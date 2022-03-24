@@ -41,7 +41,7 @@ namespace PROJECT_OLX.Controllers
                 add.Name = uploadedFile.FileName;
                 add.Path = path;
 
-            add.User = user;
+            add.userName = user.Name;
                 db.Adding.Add(add);
                 db.SaveChanges();
             }

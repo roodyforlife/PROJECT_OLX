@@ -8,19 +8,21 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="~/css/profile.css" rel="stylesheet" />
+    <link href="~/css/Null_Style.css" rel="stylesheet" />
     <title>Profile</title>
 </head>
 <body>
     
         <div class="container">
             <div class="profile">
-                <div class="profile__title">Профіль</div>
+                <div class="profile__title">@ViewBag.UserBaze.FirstName</div>
                 <div class="profile__line"></div>
                 <div class="profile__info">
-                    <div class="info__avatar"></div>
+                    <div class="info__avatar" style="background: url('@ViewBag.UserBaze.AvatarPath')"></div>
                     <div class="info__items">
-                        <div class="items__title">Матвей</div>
-                        <div class="items__desc text">Продає машини та займаеється ремонтом автомобілей та домашньої технііки</div>
+                        <div class="items__title">@ViewBag.UserBaze.FirstName</div>
+                        <div class="items__desc text">Опис: @ViewBag.UserBaze.Desc</div>
+                        <img src="~/img/" alt="Alternate Text" />
                         <form asp-action="Login" asp-controller="Login" method="post" enctype="multipart/form-data">
                             <input class="items__button" type="submit" value="Редагувати профіль" />
                             </form>
@@ -33,20 +35,20 @@
                 <div class="add">
                     <div class="add__title profile__title">Мої оголошення</div>
                     <div class="profile__add">
-                        <div class="add__content">
                             @foreach (var u in ViewBag.Baze)
                             {
-                                <a asp-controller="AdOfUser" asp-action="AdOfUser" asp-route-applicationId=@u.Id>
-                                    <div class="content__items">
-                                        <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
-                                        <div class="content__title"><p>@u.Title</p></div>
-                                        <div class="content__country">@u.Country</div>
-                                        <p>@u.User</p>
-                                        <div class="content__cost">@u.Cost.ToString("C", new System.Globalization.CultureInfo("en-us"))</div>
-                                    </div>
-                                </a>
+                        <a asp-controller="AdOfUser" asp-action="AdOfUser" asp-route-addId=@u.Id>
+                            <div class="content__items">
+                                <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
+                                <div class="content__title"><p>@u.Title</p></div>
+                                <div class="content__country">@u.Country</div>
+                                <div class="content__cost">@u.Cost.ToString("C", new System.Globalization.CultureInfo("en-us"))</div>
+                            </div>
+                            <form asp-action="Del" asp-controller="Profile" asp-route-addId=@u.Id method="post" enctype="multipart/form-data">
+                                <div class="delete__button"><input type="submit" value="Видалити" /></div>
+                                </form>
+                        </a>
                             }
-                        </div>
                         </div>
                     </div>
             </div>

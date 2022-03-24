@@ -18,8 +18,10 @@ namespace PROJECT_OLX.Controllers
         [HttpGet]
         public ViewResult Profile(User user)
         {
-            var userName = ControllerContext.HttpContext.Session.GetString("Name");
-            ViewBag.Baze = db.Adding.ToList();
+            string userName = ControllerContext.HttpContext.Session.GetString("Name");
+            ViewBag.Baze = db.Adding.ToList().FindAll(x => x.userName == userName);
+            ViewBag.UserBaze = db.Users.FirstOrDefault(x => x.Name == userName);
+            
             return View();
         }
         [HttpPost]
@@ -29,6 +31,13 @@ namespace PROJECT_OLX.Controllers
             ControllerContext.HttpContext.Session.Remove("Name");
             ViewBag.Account = null;
             return RedirectPermanent("../Home/Index");
+        }
+        public IActionResult Del(int addId)
+        {
+            var add = db.Adding.FirstOrDefault(x => x.Id == addId);
+            db.Adding.Remove(add);
+            db.SaveChanges();
+            return RedirectPermanent("../Profile/Profile");
         }
     }
 }

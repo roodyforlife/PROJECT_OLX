@@ -11,7 +11,8 @@ namespace PROJECT_OLX.Models
     {
         [Key]
         public int Id { get; set; }
-        public User User { get; set; }
+        public string userName { get; set; }
+        //public User User { get; set; }
         public int Cost { get; set; }
         public string Desc { get; set; }
         public string Title { get; set; }

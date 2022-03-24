@@ -13,7 +13,10 @@ namespace PROJECT_OLX.Models
         public string Name { get; set; }
         public string Password { get; set; }
         public string Logged { get; set; }
-
+        public string FirstName { get; set; }
+        public string AvatarPath { get; set; }
+        public string AvatarName { get; set; }
+        public string Desc { get; set; }
         public List<Add> Adds = new();
     }
 }
