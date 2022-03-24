@@ -15,21 +15,18 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="header__items">
-                <div class="header__avatar">
-                </div>
-                <div class="header__burger">
-                    @if (ViewBag.Account == null)
-                    {
-                        <div class="burger__text">@Html.ActionLink("Вхід", "Login")</div>
-                        <div class="burger__text">@Html.ActionLink("Реєстрація", "Registration")</div>
-                    }
-                    else
-                    {
-                        <div class="burger__add">@Html.ActionLink("Створити оголошення", "Add")</div>
-                        <div class="burger__text">@Html.ActionLink("Змінити профіль", "Profile", "Profile")</div>
-                    }
-                </div>
+            <div class="header__burger">
+                @if (ViewBag.Account == null)
+                {
+                    <div class="burger__text">@Html.ActionLink("Вхід", "Login")</div>
+                    <div class="burger__text">@Html.ActionLink("Реєстрація", "Registration")</div>
+                }
+                else
+                {
+                    <div class="burger__add">@Html.ActionLink("Створити оголошення", "Add")</div>
+                    <div class="burger__text">@Html.ActionLink("Змінити профіль", "Profile", "Profile")</div>
+                    <div class="header__avatar"></div>
+                }
             </div>
         </div>
         <div class="add">

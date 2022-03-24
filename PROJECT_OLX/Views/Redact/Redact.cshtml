@@ -14,7 +14,7 @@
     <title>Add</title>
 </head>
 <body>
-    <script src="js.js"></script>
+    <script src="~/js/add.js"></script>
      <form asp-action="Redact" asp-controller="Redact" method="post" enctype="multipart/form-data">
     <div class="container">
         <div class="redact">
@@ -24,7 +24,7 @@
                 <div class="content__flex">
                     <label for="upload-file__input_1">
                         <div class="content__avatar" id="content__avatar">
-                            <input type="file" name="uploadedFile" id="upload-file__input_1" class="upload-file__input" accept=".jpg, .jpeg, .png" multiple onchange="download(this)" />
+                            <input type="file" name="uploadedFile" id="upload-file__input_1" class="upload-file__input" accept=".jpg, .jpeg, .png" multiple onchange="download_user(this)" />
                         </div>
                         <div class="test__text text"></div>
                     </label>
@@ -34,8 +34,6 @@
                         @Html.TextBoxFor(x => x.FirstName)
                         <div class="text">Опис профілю</div>
                         <div class="input__textarea">@Html.TextAreaFor(x => x.Desc)</div>
-                        <div class="text">Пароль</div>
-                        @Html.TextBoxFor(x => x.Password)
                         <div class="text">Email-адреса</div>
                         @Html.TextBoxFor(x => x.Email)
                         <div class="text">Номер мобільного телефону</div>

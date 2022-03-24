@@ -7,7 +7,7 @@ body {
 
 .redact {
     width: 550px;
-    height: 740px;
+    height: 650px;
     background: white;
     border-radius: 5px;
     margin: 100px auto 0 auto;
@@ -29,7 +29,7 @@ body {
 .content__avatar{
     width: 150px;
     height: 150px;
-    background: #f3f3f3 url('default_avatar.png') 0 0/100% no-repeat;
+    background: #f3f3f3 url("../img/default_avatar.png") 0 0/100% no-repeat;
     border-radius: 50%;
     overflow: hidden;
     position: relative;
@@ -50,7 +50,7 @@ transition: all 0.2s;
 }
 .content__avatar:after{
     content: '';
-    background: url('cam.PNG') center/30px no-repeat;
+    background: url("../img/cam.PNG") center/30px no-repeat;
     position: absolute;
 }
 .content__avatar:hover:after, .content__avatar:hover:before

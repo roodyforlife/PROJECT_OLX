@@ -32,7 +32,7 @@ namespace PROJECT_OLX.Controllers
             var user = db.Users.FirstOrDefault(c => c.Name == userName);
             if (user != null)
             {
-                string path = "/Files/" + uploadedFile.FileName;
+                string path = "/Files/Add/" + uploadedFile.FileName;
                 // сохраняем файл в папку Files в каталоге wwwroot
                 using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                 {

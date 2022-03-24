@@ -27,25 +27,29 @@ namespace PROJECT_OLX.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Add(User add, IFormFile uploadedFile)
+        public async Task<IActionResult> Redact(User add, IFormFile uploadedFile)
         {
             string userName = ControllerContext.HttpContext.Session.GetString("Name");
             //var users = db.Users.ToList();
             var user = db.Users.FirstOrDefault(c => c.Name == userName);
+            db.Users.Remove(user);
             if (user != null)
             {
-                string path = "/Files/Users/" + uploadedFile.FileName;
-                // сохраняем файл в папку Files в каталоге wwwroot
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                if (uploadedFile != null)
                 {
-                    await uploadedFile.CopyToAsync(fileStream);
+                    string path = "/Files/Users/" + uploadedFile.FileName;
+                    // сохраняем файл в папку Files в каталоге wwwroot
+                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
+                    {
+                        await uploadedFile.CopyToAsync(fileStream);
+                    }
+                    user.AvatarName = uploadedFile.FileName;
+                    user.AvatarPath = path;
                 }
-                add.Name = uploadedFile.FileName;
-                add.AvatarPath = path;
-                db.Users.Add(add);
+                db.Users.Add(user);
                 db.SaveChanges();
             }
-            return RedirectPermanent("../Home/Index");
+            return RedirectPermanent("../Profile/Profile");
         }
 
 
