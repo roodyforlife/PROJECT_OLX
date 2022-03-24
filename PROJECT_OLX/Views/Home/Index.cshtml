@@ -38,7 +38,7 @@
                 <div class="add__content">
                     @foreach (var u in ViewBag.Baze)
                     {
-                        <a href="../AdOfUser/AdOfUser">
+                        <a asp-controller="AdOfUser" asp-action="AdOfUser" asp-route-applicationId=@u.Id>
                             <div class="content__items">
                                 <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
                                 <div class="content__title"><p>@u.Title</p></div>

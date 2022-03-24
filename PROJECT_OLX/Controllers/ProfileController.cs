@@ -18,6 +18,8 @@ namespace PROJECT_OLX.Controllers
         [HttpGet]
         public ViewResult Profile(User user)
         {
+            var userName = ControllerContext.HttpContext.Session.GetString("Name");
+            ViewBag.Baze = db.Adding.ToList();
             return View();
         }
         [HttpPost]
