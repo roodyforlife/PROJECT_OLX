@@ -31,7 +31,7 @@
                     <div class="info__items">
                         <div class="items__title">@ViewBag.UserBaze.FirstName</div>
                         <div class="items__desc text">Опис: @ViewBag.UserBaze.Desc</div>
-                        <form asp-action="Redact" asp-controller="Redact" method="post" enctype="multipart/form-data">
+                        <form asp-action="Redact" asp-controller="Profile" method="post" enctype="multipart/form-data">
                             <input class="items__button" type="submit" value="Редагувати профіль" />
                         </form>
                     </div>

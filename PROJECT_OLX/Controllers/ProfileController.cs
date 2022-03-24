@@ -39,5 +39,9 @@ namespace PROJECT_OLX.Controllers
             db.SaveChanges();
             return RedirectPermanent("../Profile/Profile");
         }
+        public IActionResult Redact()
+        {
+            return RedirectPermanent("../Redact/Redact");
+        }
     }
 }

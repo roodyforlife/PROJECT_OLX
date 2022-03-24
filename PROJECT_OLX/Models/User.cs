@@ -17,6 +17,8 @@ namespace PROJECT_OLX.Models
         public string AvatarPath { get; set; }
         public string AvatarName { get; set; }
         public string Desc { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
         public List<Add> Adds = new();
     }
 }
