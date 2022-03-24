@@ -9,27 +9,35 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/css/profile.css" rel="stylesheet" />
     <link href="~/css/Null_Style.css" rel="stylesheet" />
-    <title>Profile</title>
+    <title>Профіль</title>
 </head>
 <body>
     
         <div class="container">
             <div class="profile">
-                <div class="profile__title">@ViewBag.UserBaze.FirstName</div>
+                <div class="profile__title">Профіль</div>
                 <div class="profile__line"></div>
                 <div class="profile__info">
-                    <div class="info__avatar" style="background: url('@ViewBag.UserBaze.AvatarPath')"></div>
+                    @{if (ViewBag.UserBaze.AvatarPath == null)
+                        {
+                                        <div class="info__avatar"><img src="~/img/default_avatar.png" /></div>
+                        }
+                        else
+                        {
+                <div class="info__avatar"><img src="@ViewBag.UserBaze.AvatarPath" /></div>
+                        }
+                    }
+
                     <div class="info__items">
                         <div class="items__title">@ViewBag.UserBaze.FirstName</div>
                         <div class="items__desc text">Опис: @ViewBag.UserBaze.Desc</div>
-                        <img src="~/img/" alt="Alternate Text" />
-                        <form asp-action="Login" asp-controller="Login" method="post" enctype="multipart/form-data">
+                        <form asp-action="Redact" asp-controller="Redact" method="post" enctype="multipart/form-data">
                             <input class="items__button" type="submit" value="Редагувати профіль" />
-                            </form>
+                        </form>
                     </div>
                     <form asp-action="Profile" asp-controller="Profile" method="post" enctype="multipart/form-data">
                         <div class="info__exit"><button class="info__exit" type="submit">Вийти</button></div>
-                        </form>
+                    </form>
                 </div>
                 <div class="profile__line"></div>
                 <div class="add">
