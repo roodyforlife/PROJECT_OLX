@@ -25,8 +25,7 @@ namespace PROJECT_OLX.Controllers
         {
             try
             {
-                user.Desc = "Немає";
-                user.FirstName = "NoName";
+                user.AvatarPath = "/img/default_avatar.png";
                 db.Users.Add(user);
                 db.SaveChanges();
             }

@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/Null_Style.css">
-    <link rel="stylesheet" href="~/css/index.css">
+    <link rel="stylesheet" href="~/css/idndex.css">
     <title>OLX</title>
 </head>
 <body>
@@ -24,8 +24,9 @@
                 else
                 {
                     <div class="burger__add">@Html.ActionLink("Створити оголошення", "Add")</div>
-                    <div class="burger__text">@Html.ActionLink("Змінити профіль", "Profile", "Profile")</div>
-                    <div class="header__avatar"></div>
+                    <a asp-controller="Profile" asp-action="Profile" asp-route-userId="@ViewBag.Account"><div class="header__avatar" >
+                            <img src="@ViewBag.UserBaze.AvatarPath"  />
+                           </div></a>
                 }
             </div>
         </div>

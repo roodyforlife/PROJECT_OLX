@@ -19,15 +19,16 @@ namespace PROJECT_OLX.Controllers
 
         public ViewResult Index()
         {
-            
+            var user = ControllerContext.HttpContext.Session.GetString("Name");
             if (ControllerContext.HttpContext.Session.Keys.Contains("Name"))
             {
-                ViewBag.Account = ControllerContext.HttpContext.Session.GetString("Name");
+                ViewBag.Account = user;
             }
             else
             {
                 ViewBag.Account = null;
             }
+            ViewBag.UserBaze = db.Users.FirstOrDefault(x => x.Name == user);
                 ViewBag.Baze = db.Adding.ToList();
                 return View();
         }

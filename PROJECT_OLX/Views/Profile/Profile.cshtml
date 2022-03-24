@@ -7,33 +7,31 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/css/redact.css" rel="stylesheet" />
     <link href="~/css/profile.css" rel="stylesheet" />
     <link href="~/css/Null_Style.css" rel="stylesheet" />
     <title>Профіль</title>
 </head>
 <body>
-    
+    <script src="~/js/add.js"></script>
         <div class="container">
             <div class="profile">
                 <div class="profile__title">Профіль</div>
                 <div class="profile__line"></div>
                 <div class="profile__info">
-                    @{if (ViewBag.UserBaze.AvatarPath == null)
-                        {
-                                        <div class="info__avatar"><img src="~/img/default_avatar.png" /></div>
-                        }
-                        else
-                        {
-                <div class="info__avatar"><img src="@ViewBag.UserBaze.AvatarPath" /></div>
-                        }
-                    }
-
-                    <div class="info__items">
-                        <div class="items__title">@ViewBag.UserBaze.FirstName</div>
-                        <div class="items__desc text">Опис: @ViewBag.UserBaze.Desc</div>
-                        <form asp-action="Redact" asp-controller="Profile" method="post" enctype="multipart/form-data">
-                            <input class="items__button" type="submit" value="Редагувати профіль" />
+                   @if(ViewBag.User == ViewBag.UserId)
+                   {
+                       <form asp-action="ProfilePhotoAdd" asp-controller="Profile" method="post" enctype="multipart/form-data">
+                    <label for="upload-file__input_1">
+                        <div class="content__avatar" id="content__avatar" style="background: #f3f3f3 url('@ViewBag.UserBaze.AvatarPath') 0 0/100% no-repeat;">
+                            <input type="file" asp-controller="Profile" asp-action="Profile" name="uploadedFile" id="upload-file__input_1" class="upload-file__input" accept=".jpg, .jpeg, .png" multiple onchange="download_user(this)" />
+                            <input type="submit" style="width: 0.1px; height: 0.1px; opacity: 0; z-index: -1;" class="avatar__submit"/>
+                        </div>
+                    </label>
                         </form>
+                   }
+                    <div class="info__items">
+                        <div class="items__title">@ViewBag.UserBaze.Name</div>
                     </div>
                     <form asp-action="Profile" asp-controller="Profile" method="post" enctype="multipart/form-data">
                         <div class="info__exit"><button class="info__exit" type="submit">Вийти</button></div>

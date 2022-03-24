@@ -185,3 +185,39 @@
         .delete__button input:hover {
             background: #6860a3;
         }
+
+
+.content__avatar {
+    width: 150px;
+    height: 150px;
+    
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
+
+    .content__avatar:after, .content__avatar:before {
+        content: '';
+        width: 150px;
+        height: 50px;
+        background: #6860a3;
+        display: inline-block;
+        position: absolute;
+        bottom: -100%;
+        transition: all 0.2s;
+    }
+
+    .content__avatar:before {
+        content: '';
+        opacity: 0.6;
+    }
+
+    .content__avatar:after {
+        content: '';
+        background: url("../img/cam.PNG") center/30px no-repeat;
+        position: absolute;
+    }
+
+    .content__avatar:hover:after, .content__avatar:hover:before {
+        bottom: 0;
+    }

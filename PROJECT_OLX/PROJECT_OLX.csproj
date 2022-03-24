@@ -19,6 +19,7 @@
   <ItemGroup>
     <Folder Include="Models\Interfaces\" />
     <Folder Include="wwwroot\Files\Users\" />
+    <Folder Include="wwwroot\Files\Add\" />
   </ItemGroup>
 
 </Project>

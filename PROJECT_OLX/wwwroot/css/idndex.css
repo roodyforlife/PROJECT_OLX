@@ -16,7 +16,12 @@ top: 0px;
     height: 50px;
     background: #ffffff;
     border-radius: 50%;
+    overflow: hidden;
 }
+    .header__avatar img {
+        width: 100%;
+        height: 100%;
+    }
 .header__burger {
     display: flex;
     justify-content: right;
