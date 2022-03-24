@@ -1,0 +1,24 @@
+﻿.login{
+    margin: 200px auto 0 auto;
+    width: 400px;
+    height: 450px;
+    background: #dddddd;
+}
+.login__header{
+    background: #09a3ab;
+    width: 100%;
+    height: 50px;
+}
+.login__input{
+    margin-top: 50px;
+    width: 400px;
+}
+.login__button {
+    width: 70px;
+    height: 25px;
+}
+.input__block {
+    font-size: 20px;
+    font-family: Arial;
+    color: black;
+}

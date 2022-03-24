@@ -1,0 +1,89 @@
+body {
+    background: #e4e4e4;
+}
+
+.container {
+}
+
+.add {
+    width: 1000px;
+    height: 580px;
+    background: white;
+    border-radius: 5px;
+    margin: 100px auto 0 auto;
+    padding: 10px 0;
+}
+
+.add__title {
+    color: black;
+    font-size: 25px;
+    font-family: Calibri;
+    text-align: center;
+}
+
+.add__line {
+    margin: 10px 0 10px 0;
+    width: 100%;
+    height: 1px;
+    background: #e4e4e4;
+}
+
+.input__content {
+    width: 1000px;
+    margin: 20px auto 0 auto;
+}
+
+.text {
+    color: #9a9a9a;
+    font-family: Calibri;
+    margin-top: 30px;
+}
+.input__textarea textarea{
+    resize: none;
+    font-size: 20px;
+    font-family: Calibri;
+    color: black;
+    background: #f3f3f3;
+    width: 300px;
+    height: 200px;
+    border-radius: 5px;
+    border: none;
+}
+.input__content{
+    display: flex;
+    width: 90%;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.input__content input {
+    font-size: 20px;
+    font-family: Calibri;
+    color: black;
+    background: #f3f3f3;
+    width: 300px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+}
+.input__button {
+    width: 300px;
+    height: 40px;
+    margin: 0 auto;
+}
+
+    .input__button input {
+        width: 300px;
+        height: 40px;
+        display: block;
+        margin-top: 20px;
+        background: #443f6c;
+        color: white;
+        font-size: 25px;
+        font-family: Calibri;
+        text-align: center;
+        border-radius: 5px;
+        transition: all 0.3s;
+    }
+.input__button input:hover {
+    background: #6860a3;
+}

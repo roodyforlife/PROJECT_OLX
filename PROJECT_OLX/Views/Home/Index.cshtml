@@ -1,0 +1,55 @@
+﻿@model PROJECT_OLX.Models.User
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/Null_Style.css">
+    <link rel="stylesheet" href="~/css/index.css">
+    <title>OLX</title>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header__items">
+                <div class="header__avatar">
+                </div>
+                <div class="header__burger">
+                    @if (ViewBag.Account == null)
+                    {
+                        <div class="burger__text">@Html.ActionLink("Вхід", "Login")</div>
+                        <div class="burger__text">@Html.ActionLink("Реєстрація", "Registration")</div>
+                    }
+                    else
+                    {
+                        <div class="burger__add">@Html.ActionLink("Створити оголошення", "Add")</div>
+                        <div class="burger__text">@Html.ActionLink("Змінити профіль", "Profile", "Profile")</div>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="add">
+            <div class="add__items">
+                <div class="add__title">Оголошення</div>
+                <div class="add__content">
+                    @foreach (var u in ViewBag.Baze)
+                    {
+                        <a href="../AdOfUser/AdOfUser">
+                            <div class="content__items">
+                                <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
+                                <div class="content__title"><p>@u.Title</p></div>
+                                <div class="content__country">Харків</div>
+                                <div class="content__cost">@u.Cost.ToString("C", new System.Globalization.CultureInfo("en-us"))</div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿@model PROJECT_OLX.Models.User
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../PROJECT_OLX/null_style.css">
+    <link rel="stylesheet" href="~/css/registration.css">
+    <title>Реєстрація</title>
+</head>
+<body>
+    <div class="container">
+        <div class="regist">
+            <div class="regist__title">
+                <span>Реєстрація</span>
+            </div>
+            <div class="regist__line"></div>
+            <div class="regist__form">
+                @using (Html.BeginForm())
+                {
+                    <div class="regist__text">Введіть ваш логін</div>
+                    @Html.TextBoxFor(x => x.Name)
+                    <div class="probel"></div>
+                    <div class="regist__text">Введіть ваш пароль</div>
+                    @Html.PasswordFor(x => x.Password)
+                    <p>
+                    <div class="regist__button"><input type="submit" value="Реєстрація" /></div>
+                        </p>
+                }
+            </div>
+        </div>
+    </div>
+</body>
+</html>

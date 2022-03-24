@@ -1,0 +1,112 @@
+body {
+    background: #ededed;
+}
+.container {
+}
+.header {
+    position: sticky;
+top: 0px;
+    width: 100%;
+    height: 70px;
+    background: #443f6c;
+    padding: 10px;
+}
+.header__items {
+    display: flex;
+    justify-content: space-between;
+}
+.header__avatar {
+    width: 50px;
+    height: 50px;
+    background: #ffffff;
+    border-radius: 50%;
+}
+.header__burger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header__burger a{
+    color: #ffffff;
+    font-size: 25px;
+    font-family: Calibri;
+    margin: 0 15px 0 15px;
+    cursor: pointer;
+}
+.add {
+    padding: 80px;
+}
+.add__items {    
+}
+.add__title {
+    color: black;
+    font-size: 40px;
+    font-family: Calibri;
+    font-weight: 800;
+    text-align: center;
+}
+.add__content {
+    margin: 80px auto 0 auto;
+    margin-top: 80px;
+    display: flex;
+    justify-content: center;
+    flex-wrap:wrap;
+    max-width: 1500px;
+    
+}
+    .add__content a {
+        color: black;
+    }
+.content__items {
+    margin: 0 10px 20px 10px;
+    padding: 10px;
+    width: 300px;
+    height: 300px;
+    background: #ffffff;
+    font-size: 25px;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 5px;
+}
+.content__image {
+    background: #555555;
+    width: 100%;
+    height: 150px;
+}
+.content__title {
+    display: inline-block;
+    width: 100%;
+    height: 55px;
+    margin: 10px 0 5px 0;
+    color: black;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+}
+.content__country {
+    color: #9a9a9a;
+    font-size: 15px;
+}
+.content__cost {
+    margin-top: 10px;
+    font-weight: 800;
+}
+.burger__add {
+    width: 300px;
+    height: 40px;
+    border-radius:5px;
+    background: #fff;
+    text-align: center;
+    padding: 5px;
+}
+    .burger__add a {
+        color: #443f6c;
+    }
+    .burger__add:hover{
+        background: #dddddd;
+    }
+.burger__text a:hover
+{
+    color: #dddddd;
+}
