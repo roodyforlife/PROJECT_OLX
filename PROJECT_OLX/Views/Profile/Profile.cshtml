@@ -11,27 +11,33 @@
     <title>Profile</title>
 </head>
 <body>
-    <div class="container">
-        <div class="profile">
-            <div class="profile__title">Профіль</div>
-            <div class="profile__line"></div>
-            <div class="profile__info">
-                <div class="info__avatar"></div>
-                <div class="info__items">
-                    <div class="items__title">Матвей</div>
-                    <div class="items__desc text">Продає машини та займаеється ремонтом автомобілей та домашньої технііки</div>
-                    <button class="items__button">Редагувати профіль</button>
+    
+        <div class="container">
+            <div class="profile">
+                <div class="profile__title">Профіль</div>
+                <div class="profile__line"></div>
+                <div class="profile__info">
+                    <div class="info__avatar"></div>
+                    <div class="info__items">
+                        <div class="items__title">Матвей</div>
+                        <div class="items__desc text">Продає машини та займаеється ремонтом автомобілей та домашньої технііки</div>
+                        <form asp-action="Login" asp-controller="Login" method="post" enctype="multipart/form-data">
+                            <input class="items__button" type="submit" value="Редагувати профіль" />
+                            </form>
+                    </div>
+                    <form asp-action="Profile" asp-controller="Profile" method="post" enctype="multipart/form-data">
+                        <div class="info__exit"><button class="info__exit" type="submit">Вийти</button></div>
+                        </form>
                 </div>
-                <div class="info__exit">@Html.ActionLink("Вийти", "Exit", "Profile")</div>
-            </div>
-            <div class="profile__line"></div>
-            <div class="add">
-                <div class="add__title profile__title">Мої оголошення</div>
-                <div class="profile__add">
-                    dffdfdf
+                <div class="profile__line"></div>
+                <div class="add">
+                    <div class="add__title profile__title">Мої оголошення</div>
+                    <div class="profile__add">
+                        dffdfdf
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+    }
+    </body>
 </html>

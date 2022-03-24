@@ -10,12 +10,20 @@ namespace PROJECT_OLX.Controllers
 {
     public class ProfileController : Controller
     {
+        private readonly ApplicationContext db;
+        public ProfileController(ApplicationContext _db)
+        {
+            db = _db;
+        }
+        [HttpGet]
         public ViewResult Profile(User user)
         {
             return View();
         }
-        public IActionResult Exit()
+        [HttpPost]
+        public IActionResult Profile()
         {
+            ViewBag.Baze = db.Adding.ToList();
             ControllerContext.HttpContext.Session.Remove("Name");
             ViewBag.Account = null;
             return RedirectPermanent("../Home/Index");
