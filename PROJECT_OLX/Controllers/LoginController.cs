@@ -19,7 +19,12 @@ namespace PROJECT_OLX.Controllers
         [HttpGet]
         public ViewResult Login()
         {
-            return View();
+            var userName = ControllerContext.HttpContext.Session.GetString("Name");
+            if (userName != null)
+            {
+                return View("../Home/Index");
+            }
+                return View();
         }
         [HttpPost]
         public IActionResult Login(User user)

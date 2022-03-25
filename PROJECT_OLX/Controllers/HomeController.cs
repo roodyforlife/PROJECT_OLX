@@ -36,9 +36,9 @@ namespace PROJECT_OLX.Controllers
             }
             else
             {
-                ViewBag.Baze = db.Adding.ToList().Where(x => (x.Title+x.Desc)!.Contains(search.Find));
+                ViewBag.Baze = db.Adding.ToList().Where(x => (x.Title + x.Desc)!.Contains(search.Find));
             }
-                return View();
+            return View();
         }
         public IActionResult Registration()
         {

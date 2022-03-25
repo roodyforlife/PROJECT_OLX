@@ -28,6 +28,7 @@ namespace PROJECT_OLX.Controllers
                 user.AvatarPath = "/img/default_avatar.png";
                 db.Users.Add(user);
                 db.SaveChanges();
+                ControllerContext.HttpContext.Session.SetString("Name", user.Name);
             }
             catch (Exception)
             {

@@ -13,6 +13,7 @@
     <title>OLX</title>
 </head>
 <body>
+    <script src="~/js/add.js"></script>
     <div class="container">
         <div class="header">
             <p>@ViewBag.Dates</p>
@@ -34,9 +35,9 @@
             </div>
         </div>
         <div class="search">
-            <form asp-action="Index" asp-controller="Home" method="post" enctype="multipart/form-data">
+            <form asp-action="Index" asp-controller="Home" method="post">
                 <input class="input__search" id="Find" name="Find" type="search" placeholder="Пошук..." autofocus required />
-                <button class="input__button" type="submit">Пошук</button>
+                <button class="input__button" onclick="search()" >Пошук</button>
             </form>
         </div>
         <div class="add">
