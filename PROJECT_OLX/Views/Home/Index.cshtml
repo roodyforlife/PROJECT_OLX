@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="~/css/Null_Style.css">
-    <link rel="stylesheet" href="~/css/idndex.css">
+    <link rel="stylesheet" href="~/css/index.css">
     <title>OLX</title>
 </head>
 <body>
@@ -25,11 +25,17 @@
                 else
                 {
                     <div class="burger__add">@Html.ActionLink("Створити оголошення", "Add")</div>
-                    <a asp-controller="Profile" asp-action="Profile" asp-route-userId="@ViewBag.Account"><div class="header__avatar" >
-                            <img src="@ViewBag.UserBaze.AvatarPath"  />
-                           </div></a>
+                    <a asp-controller="Profile" asp-action="Profile" asp-route-userId="@ViewBag.Account">
+                        <div class="header__avatar">
+                            <img src="@ViewBag.UserBaze.AvatarPath" />
+                        </div>
+                    </a>
                 }
             </div>
+        </div>
+        <div class="search">
+            <input class="input__search" type="search" placeholder="Пошук..." autofocus required />
+            <button class="input__button" type="submit">Пошук</button>
         </div>
         <div class="add">
             <div class="add__items">
@@ -41,14 +47,16 @@
                             <div class="content__items">
                                 <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
                                 <div class="content__title"><p>@u.Title</p></div>
-                                <div class="content__country">@u.Country - @if (u.Data.Day == DateTime.Now.Day)
+                                <div class="content__country">
+                                    @u.Country - @if (u.Data.Day == DateTime.Now.Day)
                                 {
                                     @:Сегодня @u.Data.ToString("HH:mm", new System.Globalization.CultureInfo("uk-UA"))
                                 }
                                 else
                                 {
                                     @u.Data.ToString("dd MMMM", new System.Globalization.CultureInfo("uk-UA"))
-                                }</div>
+                                }
+                                </div>
                                 <div class="content__cost">@u.Cost.ToString("C0", new System.Globalization.CultureInfo("uk-UA"))</div>
                             </div>
                         </a>

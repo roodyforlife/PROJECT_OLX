@@ -111,3 +111,48 @@ top: 0px;
 {
     color: #dddddd;
 }
+
+
+.search {
+    width: 800px;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+}
+
+.input__search {
+    position: absolute;
+    border: 0;
+    height: 50px;
+    outline: 0;
+    width: 700px;
+    padding: 0 10px;
+    border-radius: 5px 0 0 5px;
+    left: 0;
+}
+
+.input__button {
+    right: 0;
+    position: absolute;
+    height: 50px;
+    border: 0;
+    background: #443f6c;
+    width: 100px;
+    font-weight: bold;
+    color: white;
+    border-radius: 0 5px 5px 0;
+    font-family: Calibri;
+    font-size: 16px;
+    box-shadow: 0px 0px 20px -2px black;
+}
+
+    .input__button:hover {
+        background: #6860a3;
+    }
+
+.input__search::-webkit-search-decoration,
+.input__search::-webkit-search-cancel-button,
+.input__search::-webkit-search-results-button,
+.input__search::-webkit-search-results-decoration {
+    display: none;
+}
