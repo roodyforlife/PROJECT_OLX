@@ -31,7 +31,7 @@
 .profile__info {
     padding: 10px 25px;
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
 }
 
 .items__title {
@@ -107,9 +107,6 @@
     width: 700px;
     margin: 20px auto;
 }
-
-
-
 
 .profile__add{
     margin: 80px auto 0 auto;

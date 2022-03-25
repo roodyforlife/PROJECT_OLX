@@ -23,8 +23,8 @@ namespace PROJECT_OLX.Controllers
         public ViewResult Profile(User user, string userId)
         {
             string userName = ControllerContext.HttpContext.Session.GetString("Name");
-            ViewBag.Baze = db.Adding.ToList().FindAll(x => x.userName == userName);
-            ViewBag.UserBaze = db.Users.FirstOrDefault(x => x.Name == userName);
+            ViewBag.Baze = db.Adding.ToList().FindAll(x => x.userName == userId);
+            ViewBag.UserBaze = db.Users.FirstOrDefault(x => x.Name == userId);
             ViewBag.User = userName;
             ViewBag.UserId = userId;
             return View();

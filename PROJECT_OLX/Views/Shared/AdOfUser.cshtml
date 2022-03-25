@@ -7,11 +7,52 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Profile</title>
+    <link href="~/css/Null_Style.css" rel="stylesheet" />
+    <link href="~/css/userAdd.css" rel="stylesheet" />
+    <title>Оголошення</title>
 </head>
 <body>
-    <div>
-        
+    <div class="container">
+        <div class="add">
+            <div class="title">Оголошення №@ViewBag.AddBaze.Id</div>
+            <div class="line"></div>
+            <div class="add__content">
+                <div class="add__info">
+                    <div class="info__photo" style="background: url('@ViewBag.AddBaze.Path') 0 0 no-repeat; background-size: cover;"></div>
+                    <div class="info__title">@ViewBag.AddBaze.Title</div>
+                    <div class="info__country">@ViewBag.AddBaze.Country</div>
+                    <div class="info__cost">@ViewBag.AddBaze.Cost.ToString("C", new System.Globalization.CultureInfo("en-us"))</div>
+                    <div class="info__desc">@ViewBag.AddBaze.Desc</div>
+                </div>
+                <div class="add__contact">
+                    <div class="contact__profile">
+                        <a style="color: black;" asp-controller="Profile" asp-action="Profile" asp-route-userId=@ViewBag.UserBaze.Name>
+                            <div class="profile__avatar" style="background: #f3f3f3 url('@ViewBag.UserBaze.AvatarPath') 0 0/100% no-repeat;"></div>
+                            </a>
+                            <div class="profile__title">@ViewBag.UserBaze.Name</div>
+                    </div>
+                    <div class="contact__email">Email: <span>@ViewBag.AddBaze.Email</span></div>
+                    <div class="contact__phone">Мобільний телефон: <span>@ViewBag.AddBaze.Phone</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="add">
+            <div class="title">Усі оголошення автора</div>
+            <div class="line"></div>
+            <div class="add__content__">
+                @foreach (var u in ViewBag.AllAddBaze)
+                {
+                    <a style="color: black;" asp-controller="AdOfUser" asp-action="AdOfUser" asp-route-addId=@u.Id>
+                        <div class="content__items">
+                            <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
+                            <div class="content__title"><p>@u.Title</p></div>
+                            <div class="content__country">@u.Country</div>
+                            <div class="content__cost">@u.Cost.ToString("C", new System.Globalization.CultureInfo("en-us"))</div>
+                        </div>
+                    </a>
+                }
+            </div>
+        </div>
     </div>
 </body>
 </html>

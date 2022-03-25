@@ -19,7 +19,7 @@
                 <div class="profile__title">Профіль</div>
                 <div class="profile__line"></div>
                 <div class="profile__info">
-                   @if(ViewBag.User == ViewBag.UserId)
+                   @if (ViewBag.User == ViewBag.UserId)
                    {
                        <form asp-action="ProfilePhotoAdd" asp-controller="Profile" method="post" enctype="multipart/form-data">
                     <label for="upload-file__input_1">
@@ -30,12 +30,19 @@
                     </label>
                         </form>
                    }
+                   else
+                   {
+                       <div class="content__avatar" id="content__avatar" style="background: #f3f3f3 url('@ViewBag.UserBaze.AvatarPath') 0 0/100% no-repeat;"></div>
+                   }
                     <div class="info__items">
-                        <div class="items__title">@ViewBag.UserBaze.Name</div>
+                        <div class="items__title">@ViewBag.UserId</div>
                     </div>
+                    @if(ViewBag.User == ViewBag.UserId)
+                    {
                     <form asp-action="Profile" asp-controller="Profile" method="post" enctype="multipart/form-data">
                         <div class="info__exit"><button class="info__exit" type="submit">Вийти</button></div>
                     </form>
+                    }
                 </div>
                 <div class="profile__line"></div>
                 <div class="add">
