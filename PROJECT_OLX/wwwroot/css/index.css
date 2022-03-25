@@ -10,6 +10,7 @@ top: 0px;
     height: 70px;
     background: #443f6c;
     padding: 10px;
+    z-index: 100;
 }
 .header__avatar {
     width: 50px;
@@ -114,18 +115,23 @@ top: 0px;
 
 
 .search {
-    width: 800px;
+    width: 91.6%;
     height: 50px;
     position: relative;
     overflow: hidden;
+    margin: 20px auto;
+    
 }
 
 .input__search {
+    font-size: 20px;
+    font-family: Arial;
+    color: black;
     position: absolute;
     border: 0;
     height: 50px;
     outline: 0;
-    width: 700px;
+    width: 94%;
     padding: 0 10px;
     border-radius: 5px 0 0 5px;
     left: 0;
@@ -137,7 +143,7 @@ top: 0px;
     height: 50px;
     border: 0;
     background: #443f6c;
-    width: 100px;
+    width: 6%;
     font-weight: bold;
     color: white;
     border-radius: 0 5px 5px 0;

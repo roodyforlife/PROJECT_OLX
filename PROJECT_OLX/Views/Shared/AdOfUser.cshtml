@@ -19,6 +19,16 @@
             <div class="add__content">
                 <div class="add__info">
                     <div class="info__photo" style="background: url('@ViewBag.AddBaze.Path') 0 0 no-repeat; background-size: cover;"></div>
+                    <div class="info__country" style="margin-top: 10px;">
+                        @if (ViewBag.AddBaze.Data.Day == DateTime.Now.Day)
+                        {
+                            @:Опубліковано сьогодні в @ViewBag.AddBaze.Data.ToString("HH:mm", new System.Globalization.CultureInfo("uk-UA"))
+                        }
+                        else
+                        {
+                            @:Опубліковано @ViewBag.AddBaze.Data.ToString("dd MMMM", new System.Globalization.CultureInfo("uk-UA"))
+                        }
+                    </div>
                     <div class="info__title">@ViewBag.AddBaze.Title</div>
                     <div class="info__country">@ViewBag.AddBaze.Country</div>
                     <div class="info__cost">@ViewBag.AddBaze.Cost.ToString("C0", new System.Globalization.CultureInfo("uk-UA"))</div>
@@ -46,7 +56,16 @@
                         <div class="content__items">
                             <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
                             <div class="content__title"><p>@u.Title</p></div>
-                            <div class="content__country">@u.Country</div>
+                            <div class="content__country">
+                                @u.Country - @if (u.Data.Day == DateTime.Now.Day)
+                                                        {
+                                                            @:Сегодня @u.Data.ToString("HH:mm", new System.Globalization.CultureInfo("uk-UA"))
+                                                        }
+                                                        else
+                                                        {
+                                                            @u.Data.ToString("dd MMMM", new System.Globalization.CultureInfo("uk-UA"))
+                                                        }
+                            </div>
                             <div class="content__cost">@u.Cost.ToString("C0", new System.Globalization.CultureInfo("uk-UA"))</div>
                         </div>
                     </a>

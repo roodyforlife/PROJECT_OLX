@@ -1,4 +1,4 @@
-﻿@model PROJECT_OLX.Models.User
+﻿@model PROJECT_OLX.Models.Search
 @{
     Layout = null;
 }
@@ -34,8 +34,10 @@
             </div>
         </div>
         <div class="search">
-            <input class="input__search" type="search" placeholder="Пошук..." autofocus required />
-            <button class="input__button" type="submit">Пошук</button>
+            <form asp-action="Index" asp-controller="Home" method="post" enctype="multipart/form-data">
+                <input class="input__search" id="Find" name="Find" type="search" placeholder="Пошук..." autofocus required />
+                <button class="input__button" type="submit">Пошук</button>
+            </form>
         </div>
         <div class="add">
             <div class="add__items">
@@ -43,23 +45,23 @@
                 <div class="add__content">
                     @foreach (var u in ViewBag.Baze)
                     {
-                        <a asp-controller="AdOfUser" asp-action="AdOfUser" asp-route-addId=@u.Id>
-                            <div class="content__items">
-                                <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
-                                <div class="content__title"><p>@u.Title</p></div>
-                                <div class="content__country">
-                                    @u.Country - @if (u.Data.Day == DateTime.Now.Day)
-                                {
-                                    @:Сегодня @u.Data.ToString("HH:mm", new System.Globalization.CultureInfo("uk-UA"))
-                                }
-                                else
-                                {
-                                    @u.Data.ToString("dd MMMM", new System.Globalization.CultureInfo("uk-UA"))
-                                }
+                            <a asp-controller="AdOfUser" asp-action="AdOfUser" asp-route-addId=@u.Id>
+                                <div class="content__items">
+                                    <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
+                                    <div class="content__title"><p>@u.Title</p></div>
+                                    <div class="content__country">
+                                        @u.Country - @if (u.Data.Day == DateTime.Now.Day)
+                                        {
+                                            @:Сегодня @u.Data.ToString("HH:mm", new System.Globalization.CultureInfo("uk-UA"))
+                                        }
+                                        else
+                                        {
+                                            @u.Data.ToString("dd MMMM", new System.Globalization.CultureInfo("uk-UA"))
+                                        }
+                                    </div>
+                                    <div class="content__cost">@u.Cost.ToString("C0", new System.Globalization.CultureInfo("uk-UA"))</div>
                                 </div>
-                                <div class="content__cost">@u.Cost.ToString("C0", new System.Globalization.CultureInfo("uk-UA"))</div>
-                            </div>
-                        </a>
+                            </a>
                     }
                 </div>
             </div>

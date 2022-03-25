@@ -20,7 +20,7 @@ namespace PROJECT_OLX.Controllers
             _appEnvironment = appEnvironment;
         }
         [HttpGet]
-        public ViewResult Profile(User user, string userId)
+        public ViewResult Profile(string userId)
         {
             string userName = ControllerContext.HttpContext.Session.GetString("Name");
             ViewBag.Baze = db.Adding.ToList().FindAll(x => x.userName == userId);
