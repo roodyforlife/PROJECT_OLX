@@ -32,6 +32,7 @@
     padding: 10px 25px;
     display: flex;
     justify-content: left;
+    position: relative;
 }
 
 .items__title {
@@ -43,6 +44,7 @@
 }
 
 .info__items {
+    margin: 0 0 0 50px;
     width: 400px;
     height: 150px;
 }
@@ -58,6 +60,8 @@
     border-radius: 5px;
     outline: none;
     box-shadow:none;
+    position: absolute;
+    right: 25px;
 }
     .info__exit:hover {
         background: #6860a3;
@@ -120,7 +124,7 @@
     }
 
 .content__items {
-    margin: 0 10px 5px 10px;
+    margin: 0 10px 20px 10px;
     padding: 10px;
     width: 300px;
     height: 300px;
@@ -162,7 +166,7 @@
 .delete__button {
     width: 300px;
     height: 40px;
-    margin: 0 auto 15px auto;
+    margin: -15px auto 20px auto;
 }
 
     .delete__button input {
@@ -183,6 +187,13 @@
             background: #6860a3;
         }
 
+.content__avatar__not {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+}
 
 .content__avatar {
     width: 150px;

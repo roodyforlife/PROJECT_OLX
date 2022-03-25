@@ -15,6 +15,7 @@
 <body>
     <div class="container">
         <div class="header">
+            <p>@ViewBag.Dates</p>
             <div class="header__burger">
                 @if (ViewBag.Account == null)
                 {
@@ -40,8 +41,15 @@
                             <div class="content__items">
                                 <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
                                 <div class="content__title"><p>@u.Title</p></div>
-                                <div class="content__country">@u.Country</div>
-                                <div class="content__cost">@u.Cost.ToString("C", new System.Globalization.CultureInfo("en-us"))</div>
+                                <div class="content__country">@u.Country - @if (u.Data.Day == DateTime.Now.Day)
+                                {
+                                    @:Сегодня @u.Data.ToString("HH:mm", new System.Globalization.CultureInfo("uk-UA"))
+                                }
+                                else
+                                {
+                                    @u.Data.ToString("dd MMMM", new System.Globalization.CultureInfo("uk-UA"))
+                                }</div>
+                                <div class="content__cost">@u.Cost.ToString("C0", new System.Globalization.CultureInfo("uk-UA"))</div>
                             </div>
                         </a>
                     }

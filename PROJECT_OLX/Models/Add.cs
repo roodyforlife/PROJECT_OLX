@@ -22,6 +22,7 @@ namespace PROJECT_OLX.Models
         //VVVVVV   Загрузка фото    VVVVVVVV
         public string Name { get; set; }
         public string Path { get; set; }
+        public DateTime Data { get; set; }
 
     }
 }

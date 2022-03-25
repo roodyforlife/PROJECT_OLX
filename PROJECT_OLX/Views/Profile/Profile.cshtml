@@ -8,7 +8,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="~/css/redact.css" rel="stylesheet" />
-    <link href="~/css/profile.css" rel="stylesheet" />
+    <link href="~/css/proffile.css" rel="stylesheet" />
     <link href="~/css/Null_Style.css" rel="stylesheet" />
     <title>Профіль</title>
 </head>
@@ -32,7 +32,7 @@
                    }
                    else
                    {
-                       <div class="content__avatar" id="content__avatar" style="background: #f3f3f3 url('@ViewBag.UserBaze.AvatarPath') 0 0/100% no-repeat;"></div>
+                       <div class="content__avatar__not" style="background: #f3f3f3 url('@ViewBag.UserBaze.AvatarPath') 0 0/100% no-repeat;"></div>
                    }
                     <div class="info__items">
                         <div class="items__title">@ViewBag.UserId</div>
@@ -40,7 +40,7 @@
                     @if(ViewBag.User == ViewBag.UserId)
                     {
                     <form asp-action="Profile" asp-controller="Profile" method="post" enctype="multipart/form-data">
-                        <div class="info__exit"><button class="info__exit" type="submit">Вийти</button></div>
+                        <button class="info__exit" type="submit">Вийти</button>
                     </form>
                     }
                 </div>
@@ -55,11 +55,14 @@
                                 <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
                                 <div class="content__title"><p>@u.Title</p></div>
                                 <div class="content__country">@u.Country</div>
-                                <div class="content__cost">@u.Cost.ToString("C", new System.Globalization.CultureInfo("en-us"))</div>
+                                <div class="content__cost">@u.Cost.ToString("C0", new System.Globalization.CultureInfo("uk-UA"))</div>
                             </div>
-                            <form asp-action="Del" asp-controller="Profile" asp-route-addId=@u.Id method="post" enctype="multipart/form-data">
+                            @if(ViewBag.User == ViewBag.UserId)
+                            {
+                                <form asp-action="Del" asp-controller="Profile" asp-route-addId=@u.Id method="post" enctype="multipart/form-data">
                                 <div class="delete__button"><input type="submit" value="Видалити" /></div>
                                 </form>
+                            }
                         </a>
                             }
                         </div>

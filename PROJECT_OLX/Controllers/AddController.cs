@@ -40,8 +40,8 @@ namespace PROJECT_OLX.Controllers
                 }
                 add.Name = uploadedFile.FileName;
                 add.Path = path;
-
-            add.userName = user.Name;
+                add.Data = DateTime.Now;
+                add.userName = user.Name;
                 db.Adding.Add(add);
                 db.SaveChanges();
             }
