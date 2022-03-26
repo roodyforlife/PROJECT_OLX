@@ -13,10 +13,12 @@ namespace PROJECT_OLX.Controllers
     {
         private readonly ApplicationContext db;
         private readonly IDbApplicationService applicationService;
-        public RegistrationController(ApplicationContext db, IDbApplicationService applicationService)
+        private readonly IDbUserService userService;
+        public RegistrationController(ApplicationContext db, IDbApplicationService applicationService, IDbUserService userService)
         {
             this.db = db;
             this.applicationService = applicationService;
+            this.userService = userService;
         }
         [HttpGet]
         public ViewResult Registration()
@@ -29,7 +31,7 @@ namespace PROJECT_OLX.Controllers
             try
             {
                 user.AvatarPath = "/img/default_avatar.png";
-                applicationService.Add(user);
+                userService.Add(user);
                 ControllerContext.HttpContext.Session.SetString("Name", user.Name);
             }
             catch (Exception)

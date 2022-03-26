@@ -40,5 +40,9 @@ namespace PROJECT_OLX.Controllers
             }
             return View(adds);
         }
+        public IActionResult Profile()
+        {
+            return RedirectPermanent("../Profile/Profile");
+        }
     }
 }

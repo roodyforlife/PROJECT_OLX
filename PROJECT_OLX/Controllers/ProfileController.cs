@@ -16,11 +16,13 @@ namespace PROJECT_OLX.Controllers
         private readonly ApplicationContext db;
         private readonly IFileService fileService;
         private readonly IDbApplicationService applicationService;
-        public ProfileController(ApplicationContext db, IDbApplicationService applicationService, IFileService fileService)
+        private readonly IDbUserService userService;
+        public ProfileController(ApplicationContext db, IDbApplicationService applicationService, IFileService fileService, IDbUserService userService)
         {
             this.db = db;
             this.applicationService = applicationService;
             this.fileService = fileService;
+            this.userService = userService;
         }
         [HttpGet]
         public ViewResult Profile(string userId)
@@ -53,10 +55,10 @@ namespace PROJECT_OLX.Controllers
             var user = db.Users.FirstOrDefault(c => c.Name == userName);
             if (user != null)
             {
-                applicationService.Del(user);
+                userService.Del(user);
                 user.AvatarPath = "/Files/Users/" + uploadedFile.FileName;
                 fileService.SaveFileTo("/Files/Users/", uploadedFile);
-                applicationService.Add(user);
+                userService.Add(user);
             }
             return RedirectPermanent($"../Profile/Profile?userId={userName}");
         }
