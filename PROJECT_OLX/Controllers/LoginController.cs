@@ -33,18 +33,12 @@ namespace PROJECT_OLX.Controllers
             if (users.Exists(x => x.Name == user.Name && x.Password == user.Password))
             {
                 ControllerContext.HttpContext.Session.SetString("Name", user.Name);
-
-                ViewBag.Logged = "Вы авторизованы как " + user.Name;
                 ViewBag.Baze = db.Adding.ToList();
-                //IProfile.name = user.Name;
-                //ViewBag.Account = IProfile.name;
                 return RedirectPermanent("../Home/Index");
             }
             else
             {
-                ViewBag.Error = "Неверный логин или пароль";
                 return View();
-                //return RedirectPermanent("../Home/Index");
             }
         }
 

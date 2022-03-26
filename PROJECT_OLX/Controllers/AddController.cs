@@ -28,7 +28,6 @@ namespace PROJECT_OLX.Controllers
         public async Task <IActionResult> Add(Add add, IFormFile uploadedFile)
         {
             string userName = ControllerContext.HttpContext.Session.GetString("Name");
-            //var users = db.Users.ToList();
             var user = db.Users.FirstOrDefault(c => c.Name == userName);
             if (user != null)
             {
