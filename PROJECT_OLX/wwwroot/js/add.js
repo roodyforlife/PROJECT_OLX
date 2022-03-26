@@ -26,5 +26,7 @@ function search()
 {
     let value = document.querySelector('.input__search').value;
     let route = "../Home/Index?search=" + value;
+
+if(value = "")
     document.location.href = route;
 }

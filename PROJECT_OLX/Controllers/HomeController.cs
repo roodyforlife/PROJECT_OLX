@@ -17,7 +17,7 @@ namespace PROJECT_OLX.Controllers
             db = _db;
         }
 
-        public ViewResult Index(Search search)
+        public ViewResult Index(string search)
         {
             var user = ControllerContext.HttpContext.Session.GetString("Name");
             if (ControllerContext.HttpContext.Session.Keys.Contains("Name"))
@@ -30,13 +30,13 @@ namespace PROJECT_OLX.Controllers
             }
                 ViewBag.Search = "";
             ViewBag.UserBaze = db.Users.FirstOrDefault(x => x.Name == user);
-            if (search.Find == null)
+            if (search is null)
             {
                 ViewBag.Baze = db.Adding.ToList();
             }
             else
             {
-                ViewBag.Baze = db.Adding.ToList().Where(x => (x.Title + x.Desc)!.Contains(search.Find));
+                ViewBag.Baze = db.Adding.ToList().Where(x => (x.Title + x.Desc)!.Contains(search));
             }
             return View();
         }
