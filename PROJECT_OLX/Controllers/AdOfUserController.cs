@@ -10,9 +10,9 @@ namespace PROJECT_OLX.Controllers
     public class AdOfUserController : Controller
     {
         private readonly ApplicationContext db;
-        public AdOfUserController(ApplicationContext _db)
+        public AdOfUserController(ApplicationContext db)
         {
-            db = _db;
+            this.db = db;
         }
         public IActionResult AdOfUser(int addId)
         {

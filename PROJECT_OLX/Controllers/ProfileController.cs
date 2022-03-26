@@ -7,17 +7,20 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using PROJECT_OLX.Interfaces;
 
 namespace PROJECT_OLX.Controllers
 {
     public class ProfileController : Controller
     {
         private readonly ApplicationContext db;
-        IWebHostEnvironment _appEnvironment;
-        public ProfileController(ApplicationContext _db, IWebHostEnvironment appEnvironment)
+        private readonly IFileService fileService;
+        private readonly IDbApplicationService applicationService;
+        public ProfileController(ApplicationContext db, IDbApplicationService applicationService, IFileService fileService)
         {
-            db = _db;
-            _appEnvironment = appEnvironment;
+            this.db = db;
+            this.applicationService = applicationService;
+            this.fileService = fileService;
         }
         [HttpGet]
         public ViewResult Profile(string userId)
@@ -41,32 +44,19 @@ namespace PROJECT_OLX.Controllers
         {
             string userName = ControllerContext.HttpContext.Session.GetString("Name");
             var add = db.Adding.FirstOrDefault(x => x.Id == addId);
-            db.Adding.Remove(add);
-            db.SaveChanges();
+            applicationService.Del(add);
             return RedirectPermanent($"../Profile/Profile?userId={userName}");
         }
         public async Task<IActionResult> ProfilePhotoAdd(string userId, IFormFile uploadedFile)
         {
             string userName = ControllerContext.HttpContext.Session.GetString("Name");
-            //var users = db.Users.ToList();
             var user = db.Users.FirstOrDefault(c => c.Name == userName);
             if (user != null)
             {
-                db.Users.Remove(user);
-                db.SaveChanges();
-                if (uploadedFile != null)
-                {
-                    string path = "/Files/Users/" + uploadedFile.FileName;
-                    // сохраняем файл в папку Files в каталоге wwwroot
-                    using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
-                    {
-                        await uploadedFile.CopyToAsync(fileStream);
-                    }
-                    user.AvatarName = uploadedFile.FileName;
-                    user.AvatarPath = path;
-                }
-                db.Users.Add(user);
-                db.SaveChanges();
+                applicationService.Del(user);
+                user.AvatarPath = "/Files/Users/" + uploadedFile.FileName;
+                fileService.SaveFileTo("/Files/Users/", uploadedFile);
+                applicationService.Add(user);
             }
             return RedirectPermanent($"../Profile/Profile?userId={userName}");
         }

@@ -11,9 +11,9 @@ namespace PROJECT_OLX.Controllers
     public class LoginController : Controller
     {
         private readonly ApplicationContext db;
-        public LoginController(ApplicationContext _db)
+        public LoginController(ApplicationContext db)
         {
-            db = _db;
+            this.db = db;
         }
 
         [HttpGet]

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PROJECT_OLX.Interfaces
 {
-    public interface IDbApplicationService
+    interface IDbUserService
     {
-        public void Add(Add add);
-        public void Del(Add add);
+        public void Add(User user);
+        public void Del(User user);
     }
 }

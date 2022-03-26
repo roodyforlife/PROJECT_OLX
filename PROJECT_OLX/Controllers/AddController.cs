@@ -16,11 +16,11 @@ namespace PROJECT_OLX.Controllers
         private readonly ApplicationContext db;
         private readonly IFileService fileService;
         private readonly IDbApplicationService applicationService;
-        public AddController(ApplicationContext _db, IDbApplicationService _applicationService, IFileService _fileService)
+        public AddController(ApplicationContext db, IDbApplicationService applicationService, IFileService fileService)
         {
-            db = _db;
-            applicationService = _applicationService;
-            fileService = _fileService;
+            this.db = db;
+            this.applicationService = applicationService;
+            this.fileService = fileService;
         }
         [HttpGet]
         public IActionResult Add()

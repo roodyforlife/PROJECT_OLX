@@ -1,5 +1,4 @@
-﻿using PROJECT_OLX.Interfaces;
-using PROJECT_OLX.Models;
+﻿using PROJECT_OLX.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,21 +6,21 @@ using System.Threading.Tasks;
 
 namespace PROJECT_OLX.Services
 {
-    public class DbApplicationService : IDbApplicationService
+    public class DbUserService
     {
         private readonly ApplicationContext db;
-        public DbApplicationService(ApplicationContext db)
+        public DbUserService(ApplicationContext db)
         {
             this.db = db;
         }
-        public void Add(Add add)
+        public void Add(User user)
         {
-            db.Adding.Add(add);
+            db.Users.Add(user);
             db.SaveChanges();
         }
-        public void Del(Add add)
+        public void Del(User user)
         {
-            db.Adding.Remove(add);
+            db.Users.Remove(user);
             db.SaveChanges();
         }
     }

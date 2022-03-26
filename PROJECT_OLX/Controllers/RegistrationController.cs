@@ -5,15 +5,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using PROJECT_OLX.Models;
 using Microsoft.AspNetCore.Http;
+using PROJECT_OLX.Interfaces;
 
 namespace PROJECT_OLX.Controllers
 {
     public class RegistrationController : Controller
     {
         private readonly ApplicationContext db;
-        public RegistrationController(ApplicationContext _db)
+        private readonly IDbApplicationService applicationService;
+        public RegistrationController(ApplicationContext db, IDbApplicationService applicationService)
         {
-            db = _db;
+            this.db = db;
+            this.applicationService = applicationService;
         }
         [HttpGet]
         public ViewResult Registration()
@@ -26,8 +29,7 @@ namespace PROJECT_OLX.Controllers
             try
             {
                 user.AvatarPath = "/img/default_avatar.png";
-                db.Users.Add(user);
-                db.SaveChanges();
+                applicationService.Add(user);
                 ControllerContext.HttpContext.Session.SetString("Name", user.Name);
             }
             catch (Exception)
@@ -35,7 +37,6 @@ namespace PROJECT_OLX.Controllers
                 return View();
             }
             ViewBag.Baze = db.Adding.ToList();
-            //ControllerContext.HttpContext.Session.SetString("Name", user.Name);
             return RedirectPermanent("../Home/Index");
         }
     }
