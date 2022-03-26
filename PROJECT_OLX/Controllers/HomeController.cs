@@ -30,15 +30,16 @@ namespace PROJECT_OLX.Controllers
             }
                 ViewBag.Search = "";
             ViewBag.UserBaze = db.Users.FirstOrDefault(x => x.Name == user);
+            List<Add> adds;
             if (search is null)
             {
-                ViewBag.Baze = db.Adding.ToList();
+                adds = db.Adding.ToList();
             }
             else
             {
-                ViewBag.Baze = db.Adding.ToList().Where(x => (x.Title + x.Desc)!.Contains(search));
+                adds = db.Adding.Where(x => (x.Title + x.Desc)!.Contains(search)).ToList();
             }
-            return View();
+            return View(adds);
         }
         public IActionResult Registration()
         {

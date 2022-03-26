@@ -5,7 +5,9 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using PROJECT_OLX.Interfaces;
 using PROJECT_OLX.Models;
+using PROJECT_OLX.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +30,8 @@ namespace PROJECT_OLX
             services.AddDbContext<ApplicationContext>();
             services.AddControllersWithViews();
             services.AddSession();
+            services.AddScoped<IFileService, FileService>();
+            services.AddScoped<IDbApplicationService, DbApplicationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

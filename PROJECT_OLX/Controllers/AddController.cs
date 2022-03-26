@@ -7,44 +7,42 @@ using PROJECT_OLX.Models;
 using Microsoft.AspNetCore.Http;
 using System.IO;
 using Microsoft.AspNetCore.Hosting;
+using PROJECT_OLX.Interfaces;
 
 namespace PROJECT_OLX.Controllers
 {
     public class AddController : Controller
     {
         private readonly ApplicationContext db;
-        IWebHostEnvironment _appEnvironment;
-        public AddController(ApplicationContext _db, IWebHostEnvironment appEnvironment)
+        private readonly IFileService fileService;
+        private readonly IDbApplicationService applicationService;
+        public AddController(ApplicationContext _db, IDbApplicationService _applicationService, IFileService _fileService)
         {
             db = _db;
-            _appEnvironment = appEnvironment;
+            applicationService = _applicationService;
+            fileService = _fileService;
         }
         [HttpGet]
-        public ViewResult Add()
+        public IActionResult Add()
         {
-            return View();
-        }
-        [HttpPost]
-        public async Task <IActionResult> Add(Add add, IFormFile uploadedFile)
-        {
-            string userName = ControllerContext.HttpContext.Session.GetString("Name");
+            var userName = ControllerContext.HttpContext.Session.GetString("Name");
             var user = db.Users.FirstOrDefault(c => c.Name == userName);
-            if (user != null)
+            if (user is null)
             {
-                string path = "/Files/Add/" + uploadedFile.FileName;
-                // сохраняем файл в папку Files в каталоге wwwroot
-                using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
-                {
-                    await uploadedFile.CopyToAsync(fileStream);
-                }
-                add.Name = uploadedFile.FileName;
-                add.Path = path;
-                add.Data = DateTime.Now;
-                add.userName = user.Name;
-                db.Adding.Add(add);
-                db.SaveChanges();
+                return RedirectPermanent("../Home/Index");
             }
+                return View();
+            }
+            [HttpPost]
+            public IActionResult Add(Add add, IFormFile uploadedFile)
+            {
+
+                add.Path = "/Files/Add/" + uploadedFile.FileName;
+                add.userName = ControllerContext.HttpContext.Session.GetString("Name");
+                fileService.SaveFileTo("/Files/Add/", uploadedFile);
+                applicationService.Add(add);
             return RedirectPermanent("../Home/Index");
+            }
+
         }
     }
-}

@@ -20,9 +20,8 @@ namespace PROJECT_OLX.Models
         public string Email { get; set; }
         public string Phone { get; set; }
         //VVVVVV   Загрузка фото    VVVVVVVV
-        public string Name { get; set; }
         public string Path { get; set; }
-        public DateTime Data { get; set; }
+        public DateTime Data { get; set; } = DateTime.Now;
 
     }
 }
