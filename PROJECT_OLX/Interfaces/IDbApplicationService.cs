@@ -10,5 +10,8 @@ namespace PROJECT_OLX.Interfaces
     {
         public void Add(Add add);
         public void Del(Add add);
+        public List<Add> GetAll();
+        public Add Get(int addId);
+        public List<Add> GetSome(string userId);
     }
 }

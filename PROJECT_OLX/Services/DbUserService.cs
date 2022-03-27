@@ -24,5 +24,15 @@ namespace PROJECT_OLX.Services
             db.Users.Remove(user);
             db.SaveChanges();
         }
+
+        public User Get(string user)
+        {
+            return db.Users.FirstOrDefault(x => x.Name == user);
+        }
+
+        public List<User> GetAll()
+        {
+            return db.Users.ToList();
+        }
     }
 }

@@ -10,7 +10,9 @@ namespace PROJECT_OLX.Models
     public class User
     {
         [Key]
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Password { get; set; }
         public string Logged { get; set; }
         public string AvatarPath { get; set; }

@@ -11,12 +11,10 @@ namespace PROJECT_OLX.Controllers
 {
     public class RegistrationController : Controller
     {
-        private readonly ApplicationContext db;
         private readonly IDbApplicationService applicationService;
         private readonly IDbUserService userService;
-        public RegistrationController(ApplicationContext db, IDbApplicationService applicationService, IDbUserService userService)
+        public RegistrationController(IDbApplicationService applicationService, IDbUserService userService)
         {
-            this.db = db;
             this.applicationService = applicationService;
             this.userService = userService;
         }
@@ -38,7 +36,7 @@ namespace PROJECT_OLX.Controllers
             {
                 return View();
             }
-            ViewBag.Baze = db.Adding.ToList();
+            /*ViewBag.Baze = applicationService.GetAll();*/
             return RedirectPermanent("../Home/Index");
         }
     }

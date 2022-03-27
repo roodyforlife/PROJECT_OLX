@@ -24,5 +24,20 @@ namespace PROJECT_OLX.Services
             db.Adding.Remove(add);
             db.SaveChanges();
         }
+
+        public Add Get(int addId)
+        {
+            return db.Adding.FirstOrDefault(x => x.Id == addId);
+        }
+
+        public List<Add> GetAll()
+        {
+            return db.Adding.ToList();
+        }
+
+        public List<Add> GetSome(string userId)
+        {
+            return db.Adding.ToList().FindAll(x => x.userName == userId);
+        }
     }
 }

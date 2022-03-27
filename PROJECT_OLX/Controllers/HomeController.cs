@@ -6,33 +6,31 @@ using System.Threading.Tasks;
 using PROJECT_OLX.Models;
 using Microsoft.AspNetCore.Http;
 using System.Globalization;
+using PROJECT_OLX.Interfaces;
 
 namespace PROJECT_OLX.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ApplicationContext db;
-        public HomeController(ApplicationContext db)
+        private readonly IDbUserService userService;
+        private readonly IDbApplicationService applicationService;
+        public HomeController(ApplicationContext db, IDbUserService userService, IDbApplicationService applicationService)
         {
             this.db = db;
+            this.userService = userService;
+            this.applicationService = applicationService;
         }
 
         public ViewResult Index(string search)
         {
             var user = ControllerContext.HttpContext.Session.GetString("Name");
-            if (ControllerContext.HttpContext.Session.Keys.Contains("Name"))
-            {
-                ViewBag.Account = user;
-            }
-            else
-            {
-                ViewBag.Account = null;
-            }
-            ViewBag.UserBaze = db.Users.FirstOrDefault(x => x.Name == user);
+            ViewBag.Account = user;
+            ViewBag.UserBaze = userService.Get(user);
             List<Add> adds;
             if (search is null)
             {
-                adds = db.Adding.ToList();
+                adds = applicationService.GetAll();
             }
             else
             {
