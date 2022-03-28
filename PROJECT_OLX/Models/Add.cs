@@ -17,7 +17,7 @@ namespace PROJECT_OLX.Models
         [RegularExpression(@"[0-9]+", ErrorMessage = "Ціна має складатися тільки з цифр")]
         public int Cost { get; set; }
         [Required(ErrorMessage = "Це обов'язкове поле")]
-        [StringLength(500, MinimumLength = 10, ErrorMessage = "Довжина опису має бути від 10 до 500 символів")]
+        [StringLength(450, MinimumLength = 10, ErrorMessage = "Довжина опису має бути від 10 до 450 символів")]
         public string Desc { get; set; }
         [Required(ErrorMessage = "Це обов'язкове поле")]
         [StringLength(100, MinimumLength = 5, ErrorMessage = "Довжина назви має бути від 5 до 100 символів")]
