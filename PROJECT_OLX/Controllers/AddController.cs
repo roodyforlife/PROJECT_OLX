@@ -13,20 +13,20 @@ namespace PROJECT_OLX.Controllers
 {
     public class AddController : Controller
     {
-        private readonly ApplicationContext db;
         private readonly IFileService fileService;
         private readonly IDbApplicationService applicationService;
-        public AddController(ApplicationContext db, IDbApplicationService applicationService, IFileService fileService)
+        private readonly IDbUserService userService;
+        public AddController( IDbApplicationService applicationService, IFileService fileService, IDbUserService userService)
         {
-            this.db = db;
             this.applicationService = applicationService;
             this.fileService = fileService;
+            this.userService = userService;
         }
         [HttpGet]
         public IActionResult Add()
         {
             var userName = ControllerContext.HttpContext.Session.GetString("Name");
-            var user = db.Users.FirstOrDefault(c => c.Name == userName);
+            var user = userService.Get(userName);
             if (user is null)
             {
                 return RedirectPermanent("../Home/Index");
