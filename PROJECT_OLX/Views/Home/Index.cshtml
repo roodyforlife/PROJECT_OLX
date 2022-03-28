@@ -21,12 +21,12 @@
             <div class="header__burger">
                 @if (ViewBag.Account == null)
                 {
-                    <div class="burger__text">@Html.ActionLink("Вхід", "Login")</div>
-                    <div class="burger__text">@Html.ActionLink("Реєстрація", "Registration")</div>
+                    <div class="burger__text"><a asp-action="Login" asp-controller="Login">Вхід</a></div>
+                    <div class="burger__text"><a asp-action="Registration" asp-controller="Registration">Реєстрація</a></div>
                 }
                 else
                 {
-                    <div class="burger__add">@Html.ActionLink("Створити оголошення", "Add")</div>
+                    <div class="burger__add"><a asp-action="Add" asp-controller="Add">Створити оголошення</a></div>
                     <a asp-controller="Profile" asp-action="Profile" asp-route-userId="@ViewBag.Account">
                         <div class="header__avatar">
                             <img src="@ViewBag.UserBaze.AvatarPath" />
