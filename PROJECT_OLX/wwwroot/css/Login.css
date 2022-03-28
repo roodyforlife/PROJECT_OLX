@@ -1,7 +1,7 @@
 ﻿.login{
     margin: 200px auto 0 auto;
     width: 400px;
-    height: 450px;
+    height: auto;
     background: #dddddd;
 }
 .login__header{

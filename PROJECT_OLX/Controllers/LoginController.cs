@@ -13,10 +13,12 @@ namespace PROJECT_OLX.Controllers
     {
         private readonly IDbApplicationService applicationService;
         private readonly IDbUserService userService;
-        public LoginController(IDbApplicationService applicationService, IDbUserService userService)
+        private readonly IAuthorisationService authorisationService;
+        public LoginController(IDbApplicationService applicationService, IDbUserService userService, IAuthorisationService authorisationService)
         {
             this.applicationService = applicationService;
             this.userService = userService;
+            this.authorisationService = authorisationService;
         }
 
         [HttpGet]
@@ -32,17 +34,19 @@ namespace PROJECT_OLX.Controllers
         [HttpPost]
         public IActionResult Login(User user)
         {
-                var users = userService.GetAll();
-                if (users.Exists(x => x.Name == user.Name && x.Password == user.Password))
-                {
-                    ControllerContext.HttpContext.Session.SetString("Name", user.Name);
-                    ViewBag.Baze = applicationService.GetAll();
-                    return RedirectPermanent("../Home/Index");
-                }
-                else
-                {
-                    return View();
-                }
+            /*var users = userService.GetAll();*/
+            /*if (users.Exists(x => x.Name == user.Name && x.Password == user.Password))*/
+            if (!authorisationService.IsRegistered(userService, user.Name) || !authorisationService.IsCorrectPassword(userService, user))
+            {
+                ModelState.AddModelError("Password", "Невірний логін або пароль");
+            }
+            if(ModelState.IsValid)
+            {
+                ControllerContext.HttpContext.Session.SetString("Name", user.Name);
+                ViewBag.Baze = applicationService.GetAll();
+                return RedirectPermanent("../Home/Index");
+            }
+            return View();
         }
 
     }

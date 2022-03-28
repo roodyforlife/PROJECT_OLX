@@ -24,10 +24,12 @@
                 @using (Html.BeginForm())
                 {
                     <div class="regist__text">Введіть ваш логін</div>
-                    @Html.TextBoxFor(x => x.Name)
+                    <input type="text" asp-for="Name" />
+                    <span asp-validation-for="Name" class="field-validation-valid"></span>
                     <div class="probel"></div>
                     <div class="regist__text">Введіть ваш пароль</div>
-                    @Html.PasswordFor(x => x.Password)
+                    <input type="password" asp-for="Password" />
+                    <span asp-validation-for="Password" class="field-validation-valid"></span>
                     <p>
                         <div class="regist__button"><input type="submit" value="Вхід" /></div>
                     </p>
