@@ -33,6 +33,7 @@ namespace PROJECT_OLX
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IDbApplicationService, DbApplicationService>();
             services.AddScoped<IDbUserService, DbUserService>();
+            services.AddScoped<IAuthorisationService, AuthorisationService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

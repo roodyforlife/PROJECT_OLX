@@ -24,7 +24,7 @@ namespace PROJECT_OLX.Controllers
         {
             var userName = ControllerContext.HttpContext.Session.GetString("Name");
             if (userName is null)
-            {
+            {   
                 return View();
             }
                 return View("../Home/Index");
@@ -32,17 +32,17 @@ namespace PROJECT_OLX.Controllers
         [HttpPost]
         public IActionResult Login(User user)
         {
-            var users = userService.GetAll();
-            if (users.Exists(x => x.Name == user.Name && x.Password == user.Password))
-            {
-                ControllerContext.HttpContext.Session.SetString("Name", user.Name);
-                ViewBag.Baze = applicationService.GetAll();
-                return RedirectPermanent("../Home/Index");
-            }
-            else
-            {
-                return View();
-            }
+                var users = userService.GetAll();
+                if (users.Exists(x => x.Name == user.Name && x.Password == user.Password))
+                {
+                    ControllerContext.HttpContext.Session.SetString("Name", user.Name);
+                    ViewBag.Baze = applicationService.GetAll();
+                    return RedirectPermanent("../Home/Index");
+                }
+                else
+                {
+                    return View();
+                }
         }
 
     }

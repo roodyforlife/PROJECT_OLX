@@ -7,7 +7,7 @@
 
 .regist {
     width: 400px;
-    height: 280px;
+    height: auto;
     background: white;
     border-radius: 5px;
     margin: 100px auto 0 auto;
