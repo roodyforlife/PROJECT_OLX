@@ -36,7 +36,7 @@ namespace PROJECT_OLX.Controllers
             [HttpPost]
             public IActionResult Add(Add add, IFormFile uploadedFile)
             {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && uploadedFile is not null)
             {
                 add.Path = "/Files/Add/" + uploadedFile.FileName;
                 add.userName = ControllerContext.HttpContext.Session.GetString("Name");

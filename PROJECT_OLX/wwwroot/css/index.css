@@ -162,3 +162,12 @@ top: 0px;
 .input__search::-webkit-search-results-decoration {
     display: none;
 }
+
+.header__logo{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    height: 30px;
+    width: 165.25px;
+    background: url('../img/logo.png') 0 0/auto 30px no-repeat;
+}

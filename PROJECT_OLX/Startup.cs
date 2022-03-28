@@ -38,7 +38,7 @@ namespace PROJECT_OLX
     .AddMvcOptions(options =>
     {
         options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
-            _ => "Поле не повинно бути порожнім і має складатися з цифр.");
+            _ => "Це обов'язкове поле");
     });
         }
 
