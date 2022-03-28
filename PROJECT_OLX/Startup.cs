@@ -34,6 +34,12 @@ namespace PROJECT_OLX
             services.AddScoped<IDbApplicationService, DbApplicationService>();
             services.AddScoped<IDbUserService, DbUserService>();
             services.AddScoped<IAuthorisationService, AuthorisationService>();
+            services.AddRazorPages()
+    .AddMvcOptions(options =>
+    {
+        options.ModelBindingMessageProvider.SetValueMustNotBeNullAccessor(
+            _ => "Поле не повинно бути порожнім і має складатися з цифр.");
+    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

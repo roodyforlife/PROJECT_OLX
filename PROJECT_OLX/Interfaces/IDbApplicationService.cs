@@ -12,6 +12,6 @@ namespace PROJECT_OLX.Interfaces
         public void Del(Add add);
         public List<Add> GetAll();
         public Add Get(int addId);
-        public List<Add> GetSome(string userId);
+        public List<Add> GetSomeByUserName(string userId);
     }
 }

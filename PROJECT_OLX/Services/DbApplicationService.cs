@@ -35,7 +35,7 @@ namespace PROJECT_OLX.Services
             return db.Adding.ToList();
         }
 
-        public List<Add> GetSome(string userId)
+        public List<Add> GetSomeByUserName(string userId)
         {
             return db.Adding.ToList().FindAll(x => x.userName == userId);
         }

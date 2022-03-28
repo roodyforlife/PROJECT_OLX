@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PROJECT_OLX.Interfaces;
 using PROJECT_OLX.Models;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,16 @@ namespace PROJECT_OLX.Controllers
     public class AdOfUserController : Controller
     {
         private readonly ApplicationContext db;
-        public AdOfUserController(ApplicationContext db)
+        private readonly IDbApplicationService applicationService;
+        public AdOfUserController(ApplicationContext db, IDbApplicationService applicationService)
         {
             this.db = db;
+            this.applicationService = applicationService;
         }
         public IActionResult AdOfUser(int addId)
         {
-            var userAdd = db.Adding.FirstOrDefault(x => x.Id == addId);
+            //var userAdd = db.Adding.FirstOrDefault(x => x.Id == addId);
+            var userAdd = applicationService.Get(addId);
             var userAccount = db.Users.FirstOrDefault(x => x.Name == userAdd.userName);
             ViewBag.AddBaze = userAdd;
             ViewBag.UserBaze = userAccount;

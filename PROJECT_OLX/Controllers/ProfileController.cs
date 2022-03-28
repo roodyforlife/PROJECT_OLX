@@ -26,7 +26,7 @@ namespace PROJECT_OLX.Controllers
         public ViewResult Profile(string userId)
         {
             string userName = ControllerContext.HttpContext.Session.GetString("Name");
-            List<Add> adds = applicationService.GetSome(userId);
+            List<Add> adds = applicationService.GetSomeByUserName(userId);
             ViewBag.UserBaze = userService.Get(userId);
             ViewBag.User = userName;
             ViewBag.UserId = userId;

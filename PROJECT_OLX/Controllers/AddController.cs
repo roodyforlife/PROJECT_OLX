@@ -36,7 +36,6 @@ namespace PROJECT_OLX.Controllers
             [HttpPost]
             public IActionResult Add(Add add, IFormFile uploadedFile)
             {
-            //ModelState["Cost"].Errors.Remove(ModelState["Cost"].Errors.FirstOrDefault(c => c.ErrorMessage == "The value '' is invalid."));
             if (ModelState.IsValid)
             {
                 add.Path = "/Files/Add/" + uploadedFile.FileName;
