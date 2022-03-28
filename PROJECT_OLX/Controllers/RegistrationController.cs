@@ -34,7 +34,6 @@ namespace PROJECT_OLX.Controllers
             {
                 ModelState.AddModelError("Name", "Такий акаунт вже існує.");
             }
-
             if (ModelState.IsValid)
             {
                 user.AvatarPath = "/img/default_avatar.png";

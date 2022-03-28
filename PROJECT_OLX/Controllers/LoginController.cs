@@ -34,8 +34,6 @@ namespace PROJECT_OLX.Controllers
         [HttpPost]
         public IActionResult Login(User user)
         {
-            /*var users = userService.GetAll();*/
-            /*if (users.Exists(x => x.Name == user.Name && x.Password == user.Password))*/
             if (!authorisationService.IsRegistered(userService, user.Name) || !authorisationService.IsCorrectPassword(userService, user))
             {
                 ModelState.AddModelError("Password", "Невірний логін або пароль");
