@@ -36,6 +36,7 @@ namespace PROJECT_OLX.Controllers
             [HttpPost]
             public IActionResult Add(Add add, IFormFile uploadedFile)
             {
+            //ModelState["Cost"].Errors.Remove(ModelState["Cost"].Errors.FirstOrDefault(c => c.ErrorMessage == "The value '' is invalid."));
             if (ModelState.IsValid)
             {
                 add.Path = "/Files/Add/" + uploadedFile.FileName;
@@ -44,6 +45,7 @@ namespace PROJECT_OLX.Controllers
                 applicationService.Add(add);
                 return RedirectPermanent("../Home/Index");
             }
+            ViewBag.IsFileValid = uploadedFile is null ? "field-validation-file-error" : "";
             return View();
             }
 

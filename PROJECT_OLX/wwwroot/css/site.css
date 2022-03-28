@@ -35,3 +35,15 @@
     font-family: Arial;
     color: black;
 }
+
+.field-validation-error {
+    color: #b94a48;
+}
+
+.field-validation-valid {
+    display: block;
+}
+
+.field-validation-file-error {
+    border: 2px dashed #b94a48;
+}

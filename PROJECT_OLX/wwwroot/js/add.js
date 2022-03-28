@@ -31,9 +31,12 @@ document.location.href = route;
 
 function input_file_validation()
 {
-    let value = document.querySelector('.upload-file__text');
-    if(value.length < 2)
+    try
     {
-        document.querySelector('.upload-file__label').style.border = "#ff0000";
+        document.querySelector('.upload-file__text').innerHTML
     }
+        catch(err){
+console.log("fdgfdgfdgdfg");
+            document.getElementById('upload-file__label').style.background = "#fff0f1";
+        }
 }
