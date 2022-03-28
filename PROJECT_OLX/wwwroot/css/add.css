@@ -7,7 +7,7 @@ body {
 
 .add {
     width: 1000px;
-    height: 580px;
+    height: auto;
     background: white;
     border-radius: 5px;
     margin: 100px auto 0 auto;
