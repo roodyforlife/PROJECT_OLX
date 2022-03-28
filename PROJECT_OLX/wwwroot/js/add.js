@@ -28,3 +28,12 @@ function search()
     let route = "../Home/Index?search=" + value;
 document.location.href = route;
 }
+
+function input_file_validation()
+{
+    let value = document.querySelector('.upload-file__text');
+    if(value.length < 2)
+    {
+        document.querySelector('.upload-file__label').style.border = "#ff0000";
+    }
+}

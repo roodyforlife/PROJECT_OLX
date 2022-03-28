@@ -23,9 +23,12 @@
                     <div class="input__content">
                         <div class="input__first">
                             <div class="input__title text">Вкажіть назву</div>
-                            @Html.TextBoxFor(x => x.Title)
+                            <input type="text" asp-for="Title" />
+                            <span asp-validation-for="Title" class="field-validation-valid"></span>
                             <div class="input__desc text">Опишіть ваш товар</div>
-                            <div class="input__textarea">@Html.TextAreaFor(x => x.Desc)</div>
+                            <div class="input__textarea"><textarea asp-for="Desc"></textarea>
+                            <span asp-validation-for="Desc" class="field-validation-valid"></span>
+                            </div>
                             <div class="input__image">
                                 <div class="upload-file__wrapper">
                                     <label class="upload-file__label" for="upload-file__input_1" >
@@ -41,18 +44,24 @@
                         </div>
                         <div class="input__second">
                             <div class="input__email text">Email-адреса</div>
-                            @Html.TextBoxFor(x => x.Email)
+                            <input type="text" asp-for="Email" />
+                            <p><span asp-validation-for="Email" class="field-validation-valid"></span></p>
                             <div class="input__phone text">Номер мобільного телефона</div>
-                           @Html.TextBoxFor(x => x.Phone)
+                           <input type="text" asp-for="Phone" />
+                            <p><span asp-validation-for="Phone" class="field-validation-valid"></span></p>
                             <div class="input__navigate text">Ваше місцезнаходження</div>
-                            <div>@Html.TextBoxFor(x => x.Country)</div>
+                            <div>
+                            <input type="text" asp-for="Country" />
+                            <p><span asp-validation-for="Country" class="field-validation-valid"></span></p>
+                            </div>
                             <div class="input__navigate text">Укажіть ціну товару</div>
-                            @Html.TextBoxFor(x => x.Cost)
+                            <input type="text" asp-for="Cost" />
+                            <p><span asp-validation-for="Cost" class="field-validation-valid"></span></p>
                         </div>
                     </div>
                     
                 </div>
-                <div class="input__button"><input type="submit"  value="Додати" /></div>
+                <div class="input__button"><input type="submit" onclick="input_file_validation()" value="Додати" /></div>
             </form>
         </div>
     </div>
