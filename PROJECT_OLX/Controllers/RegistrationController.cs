@@ -36,7 +36,9 @@ namespace PROJECT_OLX.Controllers
             }
             if (ModelState.IsValid)
             {
-                user.AvatarPath = "/img/default_avatar.png";
+                //user.Avatar = "/img/default_avatar.png";
+                byte[] arr = new byte[] { 0, 1, 1, 2, 0};
+                user.Avatar = arr;
                 userService.Add(user);
                 ControllerContext.HttpContext.Session.SetString("Name", user.Name);
                 return RedirectPermanent("../Home/Index");

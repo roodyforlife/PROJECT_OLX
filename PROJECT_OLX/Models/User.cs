@@ -22,8 +22,7 @@ namespace PROJECT_OLX.Models
         [StringLength(20, MinimumLength = 6, ErrorMessage = "Довжина пароля має бути від 6 до 20 символів")]
         public string Password { get; set; }
         public string Logged { get; set; }
-        public string AvatarPath { get; set; }
-        public string AvatarName { get; set; }
+        public byte[] Avatar { get; set; }
         public List<Add> Adds = new();
     }
 }

@@ -31,7 +31,8 @@ namespace PROJECT_OLX.Models
         [RegularExpression(@"[0-9]+", ErrorMessage = "Номер телефону має бути у цифровому форматі")]
         public string Phone { get; set; }
         //VVVVVV   Загрузка фото    VVVVVVVV
-        public string Path { get; set; }
+        //public string Path { get; set; }
+        public byte[] Avatar { get; set; }
         public DateTime Data { get; set; } = DateTime.Now;
 
     }

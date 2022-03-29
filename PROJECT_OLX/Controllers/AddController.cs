@@ -36,11 +36,12 @@ namespace PROJECT_OLX.Controllers
             [HttpPost]
             public IActionResult Add(Add add, IFormFile uploadedFile)
             {
-            if (ModelState.IsValid && uploadedFile is not null)
+            if (ModelState.IsValid && uploadedFile is not null && uploadedFile.Length < 5245329)
             {
-                add.Path = "/Files/Add/" + uploadedFile.FileName;
+                //add.Path = "/Files/Add/" + uploadedFile.FileName;
                 add.userName = ControllerContext.HttpContext.Session.GetString("Name");
-                fileService.SaveFileTo("/Files/Add/", uploadedFile);
+                //fileService.SaveFileTo("/Files/Add/", uploadedFile);
+                add.Avatar = fileService.SaveFileTov2(uploadedFile);
                 applicationService.Add(add);
                 return RedirectPermanent("../Home/Index");
             }

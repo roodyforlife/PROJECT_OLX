@@ -18,7 +18,7 @@
             <div class="line"></div>
             <div class="add__content">
                 <div class="add__info">
-                    <div class="info__photo" style="background: url('@ViewBag.AddBaze.Path') 0 0 no-repeat; background-size: cover;"></div>
+                    <div class="info__photo" style="background: url('data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.AddBaze.Avatar))') center/contain no-repeat"></div>
                     <div class="info__country" style="margin-top: 10px;">
                         @if (ViewBag.AddBaze.Data.Day == DateTime.Now.Day)
                         {
@@ -37,7 +37,7 @@
                 <div class="add__contact">
                     <div class="contact__profile">
                         <a style="color: black;" asp-controller="Profile" asp-action="Profile" asp-route-userId=@ViewBag.UserBaze.Name>
-                            <div class="profile__avatar" style="background: #f3f3f3 url('@ViewBag.UserBaze.AvatarPath') 0 0/100% no-repeat;"></div>
+                            <div class="profile__avatar" style="background: #f3f3f3 url('data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.UserBaze.Avatar))') center/cover no-repeat"></div>
                             </a>
                             <div class="profile__title">@ViewBag.UserBaze.Name</div>
                     </div>
@@ -54,7 +54,7 @@
                 {
                     <a style="color: black;" asp-controller="AdOfUser" asp-action="AdOfUser" asp-route-addId=@u.Id>
                         <div class="content__items">
-                            <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
+                            <div class="content__image" style="background: url('data:image/jpeg;base64,@(Convert.ToBase64String(u.Avatar))') center/cover"></div>
                             <div class="content__title"><p>@u.Title</p></div>
                             <div class="content__country">
                                 @u.Country - @if (u.Data.Day == DateTime.Now.Day)

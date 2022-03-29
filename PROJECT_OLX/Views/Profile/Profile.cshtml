@@ -24,7 +24,7 @@
                    {
                        <form asp-action="ProfilePhotoAdd" asp-controller="Profile" method="post" enctype="multipart/form-data">
                     <label for="upload-file__input_1">
-                        <div class="content__avatar" id="content__avatar" style="background: #f3f3f3 url('@ViewBag.UserBaze.AvatarPath') 0 0/100% no-repeat;">
+                        <div class="content__avatar" id="content__avatar" style="background: #f3f3f3 url('data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.UserBaze.Avatar))') center/cover no-repeat">
                             <input type="file" asp-controller="Profile" asp-action="Profile" name="uploadedFile" id="upload-file__input_1" class="upload-file__input" accept=".jpg, .jpeg, .png" multiple onchange="download_user(this)" />
                             <input type="submit" style="width: 0.1px; height: 0.1px; opacity: 0; z-index: -1;" class="avatar__submit"/>
                         </div>
@@ -33,7 +33,7 @@
                    }
                    else
                    {
-                       <div class="content__avatar__not" style="background: #f3f3f3 url('@ViewBag.UserBaze.AvatarPath') 0 0/100% no-repeat;"></div>
+                       <div class="content__avatar__not" style="background: #f3f3f3 url('data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.UserBaze.Avatar))') center/cover no-repeat"></div>
                    }
                     <div class="info__items">
                         <div class="items__title">@ViewBag.UserId</div>
@@ -53,7 +53,7 @@
                             {
                         <a asp-controller="AdOfUser" asp-action="AdOfUser" asp-route-addId=@u.Id>
                             <div class="content__items">
-                                <div class="content__image" style="background: url('@u.Path') 0 0 no-repeat; background-size: cover;"></div>
+                                <div class="content__image" style="background: url('data:image/jpeg;base64,@(Convert.ToBase64String(u.Avatar))') center/cover"></div>
                                 <div class="content__title"><p>@u.Title</p></div>
                                 <div class="content__country">@u.Country - @if (u.Data.Day == DateTime.Now.Day)
                                         {

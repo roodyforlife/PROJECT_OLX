@@ -24,7 +24,7 @@ namespace PROJECT_OLX.Controllers
 
         public ViewResult Index(string search)
         {
-            var user = ControllerContext.HttpContext.Session.GetString("Name");
+        var user = ControllerContext.HttpContext.Session.GetString("Name");
             ViewBag.Account = user;
             ViewBag.UserBaze = userService.Get(user);
             List<Add> adds;

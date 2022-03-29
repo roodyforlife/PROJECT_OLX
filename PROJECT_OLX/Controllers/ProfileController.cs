@@ -51,11 +51,12 @@ namespace PROJECT_OLX.Controllers
         {
             string userName = ControllerContext.HttpContext.Session.GetString("Name");
             var user = userService.Get(userName);
-            if (user != null)
+            if (user != null && uploadedFile.Length < 5245329)
             {
                 userService.Del(user);
-                user.AvatarPath = "/Files/Users/" + uploadedFile.FileName;
-                fileService.SaveFileTo("/Files/Users/", uploadedFile);
+                //user.AvatarPath = "/Files/Users/" + uploadedFile.FileName;
+                //fileService.SaveFileTo("/Files/Users/", uploadedFile);
+                user.Avatar = fileService.SaveFileTov2(uploadedFile);
                 userService.Add(user);
             }
             return RedirectPermanent($"../Profile/Profile?userId={userName}");
