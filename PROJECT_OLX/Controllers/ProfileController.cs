@@ -54,9 +54,7 @@ namespace PROJECT_OLX.Controllers
             if (user != null && uploadedFile.Length < 5245329)
             {
                 userService.Del(user);
-                //user.AvatarPath = "/Files/Users/" + uploadedFile.FileName;
-                //fileService.SaveFileTo("/Files/Users/", uploadedFile);
-                user.Avatar = fileService.SaveFileTov2(uploadedFile);
+                user.Avatar = fileService.SaveFileTo(uploadedFile);
                 userService.Add(user);
             }
             return RedirectPermanent($"../Profile/Profile?userId={userName}");

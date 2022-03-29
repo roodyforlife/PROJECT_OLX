@@ -39,7 +39,7 @@ namespace PROJECT_OLX.Controllers
             if (ModelState.IsValid && uploadedFile is not null && uploadedFile.Length < 5245329)
             {
                 add.userName = ControllerContext.HttpContext.Session.GetString("Name");
-                add.Avatar = fileService.SaveFileTov2(uploadedFile);
+                add.Avatar = fileService.SaveFileTo(uploadedFile);
                 applicationService.Add(add);
                 return RedirectPermanent("../Home/Index");
             }

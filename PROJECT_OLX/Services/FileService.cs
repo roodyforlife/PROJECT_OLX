@@ -16,31 +16,18 @@ namespace PROJECT_OLX.Services
         {
             _appEnvironment = appEnvironment;
         }
-        public void SaveFileTo(string path, IFormFile file)
-        {
-            if(file is null || path is null || path == String.Empty)
-            {
-                throw new ArgumentException();
-            }
-            using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path + file.FileName, FileMode.Create))
-            {
-                file.CopyTo(fileStream);
-            }
-        }
 
-        public byte[] SaveFileTov2(IFormFile file)
+        public byte[] SaveFileTo(IFormFile file)
         {
             if (file is null)
             {
                 throw new ArgumentException();
             }
             byte[] imageData = null;
-            // считываем переданный файл в массив байтов
             using (var binaryReader = new BinaryReader(file.OpenReadStream()))
             {
                 imageData = binaryReader.ReadBytes((int)file.Length);
             }
-            // установка массива байтов
             return imageData;
         }
     }
