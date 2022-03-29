@@ -38,14 +38,12 @@ namespace PROJECT_OLX.Controllers
             {
             if (ModelState.IsValid && uploadedFile is not null && uploadedFile.Length < 5245329)
             {
-                //add.Path = "/Files/Add/" + uploadedFile.FileName;
                 add.userName = ControllerContext.HttpContext.Session.GetString("Name");
-                //fileService.SaveFileTo("/Files/Add/", uploadedFile);
                 add.Avatar = fileService.SaveFileTov2(uploadedFile);
                 applicationService.Add(add);
                 return RedirectPermanent("../Home/Index");
             }
-            ViewBag.IsFileValid = uploadedFile is null ? "field-validation-file-error" : "";
+            ViewBag.IsFileValid = uploadedFile is null || uploadedFile.Length > 5245329 ? "field-validation-file-error" : "";
             return View();
             }
 
