@@ -23,8 +23,8 @@ namespace PROJECT_OLX.Controllers
             var userAccount = userService.Get(userAdd.userName);
             ViewBag.AddBaze = userAdd;
             ViewBag.UserBaze = userAccount;
-            ViewBag.AllAddBaze = applicationService.GetSomeByUserName(userAccount.Name);
-            return View();
+            List<Add> adds = applicationService.GetSomeByUserName(userAccount.Name);
+            return View(adds);
         }
     }
 }

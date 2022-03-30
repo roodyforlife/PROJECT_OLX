@@ -6,9 +6,13 @@
 
   <ItemGroup>
     <Compile Remove="Models\Interfaces\**" />
+    <Compile Remove="Views\Redact\**" />
     <Content Remove="Models\Interfaces\**" />
+    <Content Remove="Views\Redact\**" />
     <EmbeddedResource Remove="Models\Interfaces\**" />
+    <EmbeddedResource Remove="Views\Redact\**" />
     <None Remove="Models\Interfaces\**" />
+    <None Remove="Views\Redact\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,7 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Redact\" />
     <Folder Include="wwwroot\Files\Users\" />
     <Folder Include="wwwroot\Files\Add\" />
   </ItemGroup>

@@ -1,4 +1,5 @@
-﻿@model PROJECT_OLX.Models.User
+﻿@using PROJECT_OLX.Models;
+@model IEnumerable<Add>
 @{
     Layout = null;
 }
@@ -50,7 +51,7 @@
             <div class="title">Усі оголошення автора</div>
             <div class="line"></div>
             <div class="add__content__">
-                @foreach (var u in ViewBag.AllAddBaze)
+                @foreach (var u in Model)
                 {
                     <a style="color: black;" asp-controller="AdOfUser" asp-action="AdOfUser" asp-route-addId=@u.Id>
                         <div class="content__items">

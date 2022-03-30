@@ -13,5 +13,6 @@ namespace PROJECT_OLX.Interfaces
         public List<Add> GetAll();
         public Add Get(int addId);
         public List<Add> GetSomeByUserName(string userId);
+        public List<Add> GetSomeBySearch(string search);
     }
 }

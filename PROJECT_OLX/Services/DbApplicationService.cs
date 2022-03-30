@@ -35,6 +35,11 @@ namespace PROJECT_OLX.Services
             return db.Adding.ToList();
         }
 
+        public List<Add> GetSomeBySearch(string search)
+        {
+            return db.Adding.Where(x => (x.Title + x.Desc)!.Contains(search)).ToList();
+        }
+
         public List<Add> GetSomeByUserName(string userId)
         {
             return db.Adding.ToList().FindAll(x => x.userName == userId);

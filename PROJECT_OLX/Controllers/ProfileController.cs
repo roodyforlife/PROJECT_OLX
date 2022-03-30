@@ -43,8 +43,7 @@ namespace PROJECT_OLX.Controllers
         public IActionResult Del(int addId)
         {
             string userName = ControllerContext.HttpContext.Session.GetString("Name");
-            var add = applicationService.Get(addId);
-            applicationService.Del(add);
+            applicationService.Del(applicationService.Get(addId));
             return RedirectPermanent($"../Profile/Profile?userId={userName}");
         }
         public async Task<IActionResult> ProfilePhotoAdd(string userId, IFormFile uploadedFile)

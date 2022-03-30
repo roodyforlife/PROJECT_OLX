@@ -12,12 +12,10 @@ namespace PROJECT_OLX.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationContext db;
         private readonly IDbUserService userService;
         private readonly IDbApplicationService applicationService;
-        public HomeController(ApplicationContext db, IDbUserService userService, IDbApplicationService applicationService)
+        public HomeController(IDbUserService userService, IDbApplicationService applicationService)
         {
-            this.db = db;
             this.userService = userService;
             this.applicationService = applicationService;
         }
@@ -34,7 +32,7 @@ namespace PROJECT_OLX.Controllers
             }
             else
             {
-                adds = db.Adding.Where(x => (x.Title + x.Desc)!.Contains(search)).ToList();
+                adds = applicationService.GetSomeBySearch(search);
             }
             return View(adds);
         }
