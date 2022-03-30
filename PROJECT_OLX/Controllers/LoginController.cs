@@ -11,14 +11,14 @@ namespace PROJECT_OLX.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IDbApplicationService applicationService;
-        private readonly IDbUserService userService;
-        private readonly IAuthorisationService authorisationService;
+        private readonly IDbApplicationService _applicationService;
+        private readonly IDbUserService _userService;
+        private readonly IAuthorisationService _authorisationService;
         public LoginController(IDbApplicationService applicationService, IDbUserService userService, IAuthorisationService authorisationService)
         {
-            this.applicationService = applicationService;
-            this.userService = userService;
-            this.authorisationService = authorisationService;
+            _applicationService = applicationService;
+            _userService = userService;
+            _authorisationService = authorisationService;
         }
 
         [HttpGet]
@@ -34,14 +34,14 @@ namespace PROJECT_OLX.Controllers
         [HttpPost]
         public IActionResult Login(User user)
         {
-            if (!authorisationService.IsRegistered(userService, user.Name) || !authorisationService.IsCorrectPassword(userService, user))
+            if (!_authorisationService.IsRegistered(_userService, user.Name) || !_authorisationService.IsCorrectPassword(_userService, user))
             {
                 ModelState.AddModelError("Password", "Невірний логін або пароль");
             }
             if(ModelState.IsValid)
             {
                 ControllerContext.HttpContext.Session.SetString("Name", user.Name);
-                ViewBag.Baze = applicationService.GetAll();
+                ViewBag.Baze = _applicationService.GetAll();
                 return RedirectPermanent("../Home/Index");
             }
             return View();

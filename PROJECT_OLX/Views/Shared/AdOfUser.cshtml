@@ -10,16 +10,27 @@
     <meta name="viewport" content="width=device-width" />
     <link href="~/css/Null_Style.css" rel="stylesheet" />
     <link href="~/css/userAdd.css" rel="stylesheet" />
+    <link href="~/css/slider.css" rel="stylesheet" />
     <title>Оголошення</title>
 </head>
 <body>
+    <script src="~/js/jquery-latest.min.js"></script>
+    <script src="~/js/slider.js"></script>
     <div class="container">
         <div class="add">
             <div class="title">Оголошення №@ViewBag.AddBaze.Id</div>
             <div class="line"></div>
             <div class="add__content">
                 <div class="add__info">
-                    <div class="info__photo" style="background: url('data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.AddBaze.Avatar))') center/contain no-repeat"></div>
+                    <!--ФОТКИ-->
+                    <div class="slider">
+                            <ul>
+                                @foreach(var u in ViewBag.AddBaze.Photos)
+                                {
+                                    <li><img src="data:image/jpeg;base64,@(Convert.ToBase64String(u.Avatar))" alt="Alternate Text" /></li>
+                                }
+                            </ul>
+                    </div>
                     <div class="info__country" style="margin-top: 10px;">
                         @if (ViewBag.AddBaze.Data.Day == DateTime.Now.Day)
                         {
@@ -39,8 +50,8 @@
                     <div class="contact__profile">
                         <a style="color: black;" asp-controller="Profile" asp-action="Profile" asp-route-userId=@ViewBag.UserBaze.Name>
                             <div class="profile__avatar" style="background: #f3f3f3 url('data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.UserBaze.Avatar))') center/cover no-repeat"></div>
-                            </a>
-                            <div class="profile__title">@ViewBag.UserBaze.Name</div>
+                        </a>
+                        <div class="profile__title">@ViewBag.UserBaze.Name</div>
                     </div>
                     <div class="contact__email">Email: <span>@ViewBag.AddBaze.Email</span></div>
                     <div class="contact__phone">Мобільний телефон: <span>@ViewBag.AddBaze.Phone</span></div>
@@ -55,17 +66,17 @@
                 {
                     <a style="color: black;" asp-controller="AdOfUser" asp-action="AdOfUser" asp-route-addId=@u.Id>
                         <div class="content__items">
-                            <div class="content__image" style="background: url('data:image/jpeg;base64,@(Convert.ToBase64String(u.Avatar))') center/cover"></div>
+                            <div class="content__image" style="background: url('data:image/jpeg;base64,@(Convert.ToBase64String(u.Photos.First().Avatar))') center/cover"></div>
                             <div class="content__title"><p>@u.Title</p></div>
                             <div class="content__country">
                                 @u.Country - @if (u.Data.Day == DateTime.Now.Day)
-                                                        {
-                                                            @:Сегодня @u.Data.ToString("HH:mm", new System.Globalization.CultureInfo("uk-UA"))
-                                                        }
-                                                        else
-                                                        {
-                                                            @u.Data.ToString("dd MMMM", new System.Globalization.CultureInfo("uk-UA"))
-                                                        }
+                                {
+                                    @:Сегодня @u.Data.ToString("HH:mm", new System.Globalization.CultureInfo("uk-UA"))
+                                }
+                                else
+                                {
+                                    @u.Data.ToString("dd MMMM", new System.Globalization.CultureInfo("uk-UA"))
+                                }
                             </div>
                             <div class="content__cost">@u.Cost.ToString("C0", new System.Globalization.CultureInfo("uk-UA"))</div>
                         </div>

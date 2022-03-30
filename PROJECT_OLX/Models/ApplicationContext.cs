@@ -11,6 +11,7 @@ namespace PROJECT_OLX.Models
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Add> Adding { get; set; }
+        public DbSet<Photo> Photos { get; set; }
         public ApplicationContext()
         {
             //Database.EnsureDeleted();

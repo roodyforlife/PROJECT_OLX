@@ -1,12 +1,17 @@
 function download(input)
 {
-    let file = input.files[0];
+    let block = document.querySelector('#upload-file__text');
+    block.innerHTML = "";
+    for(let i = 0; i < input.files.length; i++)
+    {
+    let file = input.files[i];
     let reader = new FileReader();
     reader.fileName = file.name;
     reader.readAsDataURL(file);
     reader.onload = function (readerEvt) {
-        document.getElementById("upload-file__text").innerHTML = readerEvt.target.fileName;
+        block.innerHTML += readerEvt.target.fileName + "</br>";
     }
+}
 }
 
 function download_user(input)

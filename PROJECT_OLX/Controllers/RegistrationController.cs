@@ -12,14 +12,14 @@ namespace PROJECT_OLX.Controllers
 {
     public class RegistrationController : Controller
     {
-        private readonly IDbApplicationService applicationService;
-        private readonly IDbUserService userService;
-        private readonly IAuthorisationService authorisationService;
+        private readonly IDbApplicationService _applicationService;
+        private readonly IDbUserService _userService;
+        private readonly IAuthorisationService _authorisationService;
         public RegistrationController(IDbApplicationService applicationService, IDbUserService userService, IAuthorisationService authorisationService)
         {
-            this.applicationService = applicationService;
-            this.userService = userService;
-            this.authorisationService = authorisationService;
+            _applicationService = applicationService;
+            _userService = userService;
+            _authorisationService = authorisationService;
         }
         [HttpGet]
         public ViewResult Registration()
@@ -30,7 +30,7 @@ namespace PROJECT_OLX.Controllers
         public IActionResult Registration(User user)
         {
             
-            if (user.Name != null && authorisationService.IsRegistered(userService, user.Name))
+            if (user.Name != null && _authorisationService.IsRegistered(_userService, user.Name))
             {
                 ModelState.AddModelError("Name", "Такий акаунт вже існує.");
             }
@@ -38,7 +38,7 @@ namespace PROJECT_OLX.Controllers
             {
                 byte[] arr = new byte[] { 0, 1, 1, 2, 0};
                 user.Avatar = arr;
-                userService.Add(user);
+                _userService.Add(user);
                 ControllerContext.HttpContext.Session.SetString("Name", user.Name);
                 return RedirectPermanent("../Home/Index");
             }

@@ -1,4 +1,5 @@
-﻿using PROJECT_OLX.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using PROJECT_OLX.Interfaces;
 using PROJECT_OLX.Models;
 using System;
 using System.Collections.Generic;
@@ -9,40 +10,40 @@ namespace PROJECT_OLX.Services
 {
     public class DbApplicationService : IDbApplicationService
     {
-        private readonly ApplicationContext db;
+        private readonly ApplicationContext _db;
         public DbApplicationService(ApplicationContext db)
         {
-            this.db = db;
+            _db = db;
         }
         public void Add(Add add)
         {
-            db.Adding.Add(add);
-            db.SaveChanges();
+            _db.Adding.Add(add);
+            _db.SaveChanges();
         }
         public void Del(Add add)
         {
-            db.Adding.Remove(add);
-            db.SaveChanges();
+            _db.Adding.Remove(add);
+            _db.SaveChanges();
         }
 
         public Add Get(int addId)
         {
-            return db.Adding.FirstOrDefault(x => x.Id == addId);
+            return _db.Adding.Include(x => x.Photos).FirstOrDefault(x => x.Id == addId);
         }
 
         public List<Add> GetAll()
         {
-            return db.Adding.ToList();
+            return _db.Adding.Include(x => x.Photos).ToList();
         }
 
         public List<Add> GetSomeBySearch(string search)
         {
-            return db.Adding.Where(x => (x.Title + x.Desc)!.Contains(search)).ToList();
+            return _db.Adding.Where(x => (x.Title + x.Desc)!.Contains(search)).Include(x => x.Photos).ToList();
         }
 
         public List<Add> GetSomeByUserName(string userId)
         {
-            return db.Adding.ToList().FindAll(x => x.userName == userId);
+            return _db.Adding.Include(x => x.Photos).ToList().FindAll(x => x.userName == userId);
         }
     }
 }
