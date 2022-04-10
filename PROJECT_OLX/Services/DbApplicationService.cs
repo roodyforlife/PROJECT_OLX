@@ -10,40 +10,40 @@ namespace PROJECT_OLX.Services
 {
     public class DbApplicationService : IDbApplicationService
     {
-        private readonly ApplicationContext _db;
+        private readonly ApplicationContext db;
         public DbApplicationService(ApplicationContext db)
         {
-            _db = db;
+            this.db = db;
         }
         public void Add(Add add)
         {
-            _db.Adding.Add(add);
-            _db.SaveChanges();
+            db.Adding.Add(add);
+            db.SaveChanges();
         }
         public void Del(Add add)
         {
-            _db.Adding.Remove(add);
-            _db.SaveChanges();
+            db.Adding.Remove(add);
+            db.SaveChanges();
         }
 
         public Add Get(int addId)
         {
-            return _db.Adding.Include(x => x.Photos).FirstOrDefault(x => x.Id == addId);
+            return db.Adding.Include(x => x.Photos).FirstOrDefault(x => x.Id == addId);
         }
 
         public List<Add> GetAll()
         {
-            return _db.Adding.Include(x => x.Photos).ToList();
+            return db.Adding.Include(x => x.Photos).ToList();
         }
 
         public List<Add> GetSomeBySearch(string search)
         {
-            return _db.Adding.Where(x => (x.Title + x.Desc)!.Contains(search)).Include(x => x.Photos).ToList();
+            return db.Adding.Where(x => (x.Title + x.Desc)!.Contains(search)).Include(x => x.Photos).ToList();
         }
 
         public List<Add> GetSomeByUserName(string userId)
         {
-            return _db.Adding.Include(x => x.Photos).ToList().FindAll(x => x.userName == userId);
+            return db.Adding.Include(x => x.Photos).ToList().FindAll(x => x.userName == userId);
         }
     }
 }

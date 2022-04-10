@@ -24,13 +24,36 @@
             <div class="regist__form">
                 @using (Html.BeginForm())
                 {
-                    <div class="regist__text">Введіть ваш логін</div>
-                    <input type="text" asp-for="Name" />
-                    <span asp-validation-for="Name" class="field-validation-valid"></span>
-                    <div class="probel"></div>
-                    <div class="regist__text">Введіть ваш пароль</div>
-                    <input type="password" asp-for="Password" />
-                    <span asp-validation-for="Password" class="field-validation-valid"></span>
+                    <div class="input">
+                        <div class="regist__text">Введіть ваш логін</div>
+                        <input type="text" asp-for="Login" />
+                        <span asp-validation-for="Login" class="field-validation-valid"></span>
+                    </div>
+                    <div class="input">
+                        <div class="regist__text">Введіть ваш пароль</div>
+                        <input type="password" asp-for="Password" />
+                        <span asp-validation-for="Password" class="field-validation-valid"></span>
+                    </div>
+                    <div class="input">
+                        <div class="regist__text">Повторіть ваш пароль</div>
+                        <input type="password" asp-for="PasswordConfirm" />
+                        <span asp-validation-for="PasswordConfirm" class="field-validation-valid"></span>
+                    </div>
+                    <div class="input">
+                        <div class="regist__text">Введіть ваше ім'я</div>
+                        <input type="text" asp-for="Name" />
+                        <span asp-validation-for="Name" class="field-validation-valid"></span>
+                    </div>
+                    <div class="input">
+                        <div class="regist__text">Введіть вашу email-адресу</div>
+                        <input type="email" asp-for="Email" />
+                        <span asp-validation-for="Email" class="field-validation-valid"></span>
+                    </div>
+                    <div class="input">
+                        <div class="regist__text">Введіть ваш номер мобільного телефону</div>
+                        <input type="tel" asp-for="Phone" />
+                        <span asp-validation-for="Phone" class="field-validation-valid"></span>
+                    </div>
                     <p>
                         <div class="regist__button"><input type="submit" value="Реєстрація" /></div>
                     </p>

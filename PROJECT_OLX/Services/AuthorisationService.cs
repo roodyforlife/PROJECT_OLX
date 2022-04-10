@@ -10,9 +10,9 @@ namespace PROJECT_OLX.Services
 {
     public class AuthorisationService : IAuthorisationService
     {
-        public bool IsCorrectPassword(IDbUserService userService, User user)
+        public bool IsCorrectPassword(IDbUserService userService, LoginUser user)
         {
-            var test = userService.Get(user.Name);
+            var test = userService.Get(user.Login);
             if (user.Password == test.Password)
             {
                 return true;

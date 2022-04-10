@@ -36,7 +36,11 @@
                        <div class="content__avatar__not" style="background: #f3f3f3 url('data:image/jpeg;base64,@(Convert.ToBase64String(ViewBag.UserBaze.Avatar))') center/cover no-repeat"></div>
                    }
                     <div class="info__items">
-                        <div class="items__title">@ViewBag.UserId</div>
+                        <div class="items__title">@ViewBag.UserBaze.Name</div>
+                        <div style="margin-top: 20px">
+                        <div class="contact__email">Email: <span>@ViewBag.UserBaze.Email</span></div>
+                    <div class="contact__phone">Мобільний телефон: <span>@ViewBag.UserBaze.Phone</span></div>
+                        </div>
                     </div>
                     @if(ViewBag.User == ViewBag.UserId)
                     {

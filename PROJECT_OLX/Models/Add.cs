@@ -24,13 +24,6 @@ namespace PROJECT_OLX.Models
         public string Title { get; set; }
         [Required(ErrorMessage = "Це обов'язкове поле")]
         public string Country { get; set; }
-        [Required(ErrorMessage = "Це обов'язкове поле")]
-        [EmailAddress(ErrorMessage = "Некоректна email-адреса")]
-        public string Email { get; set; }
-        [Required(ErrorMessage = "Це обов'язкове поле")]
-        [RegularExpression(@"[0-9]+", ErrorMessage = "Номер телефону має бути у цифровому форматі")]
-        public string Phone { get; set; }
-        //public byte[] Avatar { get; set; }
         public List<Photo> Photos { get; set; } = new List<Photo>();
         public DateTime Data { get; set; } = DateTime.Now;
 

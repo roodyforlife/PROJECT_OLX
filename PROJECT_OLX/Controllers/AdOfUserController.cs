@@ -10,20 +10,20 @@ namespace PROJECT_OLX.Controllers
 {
     public class AdOfUserController : Controller
     {
-        private readonly IDbApplicationService _applicationService;
-        private readonly IDbUserService _userService;
+        private readonly IDbApplicationService applicationService;
+        private readonly IDbUserService userService;
         public AdOfUserController(IDbApplicationService applicationService, IDbUserService userService)
         {
-            _applicationService = applicationService;
-            _userService = userService;
+            this.applicationService = applicationService;
+            this.userService = userService;
         }
         public IActionResult AdOfUser(int addId)
         {
-            var userAdd = _applicationService.Get(addId);
-            var userAccount = _userService.Get(userAdd.userName);
+            var userAdd = applicationService.Get(addId);
+            var userAccount = userService.Get(userAdd.userName);
             ViewBag.AddBaze = userAdd;
             ViewBag.UserBaze = userAccount;
-            List<Add> adds = _applicationService.GetSomeByUserName(userAccount.Name);
+            List<Add> adds = applicationService.GetSomeByUserName(userAccount.Login);
             return View(adds);
         }
     }

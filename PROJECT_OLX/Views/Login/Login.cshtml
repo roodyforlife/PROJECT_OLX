@@ -1,4 +1,4 @@
-﻿@model PROJECT_OLX.Models.User
+﻿@model PROJECT_OLX.Models.LoginUser
 @{
     Layout = null;
 }
@@ -24,19 +24,22 @@
             <div class="regist__form">
                 @using (Html.BeginForm())
                 {
-                    <div class="regist__text">Введіть ваш логін</div>
-                    <input type="text" asp-for="Name" />
-                    <span asp-validation-for="Name" class="field-validation-valid"></span>
-                    <div class="probel"></div>
-                    <div class="regist__text">Введіть ваш пароль</div>
-                    <input type="password" asp-for="Password" />
-                    <span asp-validation-for="Password" class="field-validation-valid"></span>
-                    <p>
-                        <div class="regist__button"><input type="submit" value="Вхід" /></div>
-                    </p>
-                }
-            </div>
-        </div>
+                    <div class="input">
+                        <div class="regist__text">Введіть ваш логін</div>
+                        <input type="text" asp-for="Login" />
+                        <span asp-validation-for="Login" class="field-validation-valid"></span>
+                    </div>
+                    <div class="input">
+                        <div class="regist__text">Введіть ваш пароль</div>
+                        <input type="password" asp-for="Password" />
+                        <span asp-validation-for="Password" class="field-validation-valid"></span>
+                    </div>
+                        <p>
+                            <div class="regist__button"><input type="submit" value="Вхід" /></div>
+                        </p>
+                        }
+                    </div>
+                </div>
     </div>
 </body>
 </html>

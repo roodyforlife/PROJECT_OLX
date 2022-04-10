@@ -9,6 +9,6 @@ namespace PROJECT_OLX.Interfaces
     public interface IAuthorisationService
     {
         public bool IsRegistered(IDbUserService userService, string user);
-        public bool IsCorrectPassword(IDbUserService userService, User user);
+        public bool IsCorrectPassword(IDbUserService userService, LoginUser user);
     }
 }

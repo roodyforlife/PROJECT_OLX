@@ -13,22 +13,21 @@ namespace PROJECT_OLX.Controllers
 {
     public class AddController : Controller
     {
-        private readonly IFileService _fileService;
-        private readonly IDbApplicationService _applicationService;
-        private readonly IDbUserService _userService;
-        private readonly ApplicationContext _db; 
-        public AddController(ApplicationContext db, IDbApplicationService applicationService, IFileService fileService, IDbUserService userService)
+        private readonly IFileService fileService;
+        private readonly IDbApplicationService applicationService;
+        private readonly IDbUserService userService;
+        private readonly ApplicationContext db; 
+        public AddController(IDbApplicationService applicationService, IFileService fileService, IDbUserService userService)
         {
-            _applicationService = applicationService;
-            _fileService = fileService;
-            _userService = userService;
-            _db = db;
+            this.applicationService = applicationService;
+            this.fileService = fileService;
+            this.userService = userService;
         }
         [HttpGet]
         public IActionResult Add()
         {
             var userName = ControllerContext.HttpContext.Session.GetString("Name");
-            var user = _userService.Get(userName);
+            var user = userService.Get(userName);
             if (user is null)
             {
                 return RedirectPermanent("../Home/Index");
@@ -41,8 +40,8 @@ namespace PROJECT_OLX.Controllers
             if (ModelState.IsValid && uploads is not null && uploads.FirstOrDefault(x => x.Length > 3145728) is null && uploads.Count <= 5)
             {
                 add.userName = ControllerContext.HttpContext.Session.GetString("Name");
-                add.Photos.AddRange(_fileService.GetFilesFrom(uploads));
-                _applicationService.Add(add);
+                add.Photos.AddRange(fileService.GetFilesFrom(uploads));
+                applicationService.Add(add);
                 return RedirectPermanent("../Home/Index");
             }
             ViewBag.IsFileValid = uploads is not null || uploads.FirstOrDefault(x => x.Length > 3145728) is null || uploads.Count <= 5 ? "field-validation-file-error" : "";

@@ -12,14 +12,12 @@ namespace PROJECT_OLX.Controllers
 {
     public class RegistrationController : Controller
     {
-        private readonly IDbApplicationService _applicationService;
-        private readonly IDbUserService _userService;
-        private readonly IAuthorisationService _authorisationService;
-        public RegistrationController(IDbApplicationService applicationService, IDbUserService userService, IAuthorisationService authorisationService)
+        private readonly IDbUserService userService;
+        private readonly IAuthorisationService authorisationService;
+        public RegistrationController(IDbUserService userService, IAuthorisationService authorisationService)
         {
-            _applicationService = applicationService;
-            _userService = userService;
-            _authorisationService = authorisationService;
+            this.userService = userService;
+            this.authorisationService = authorisationService;
         }
         [HttpGet]
         public ViewResult Registration()
@@ -30,16 +28,15 @@ namespace PROJECT_OLX.Controllers
         public IActionResult Registration(User user)
         {
             
-            if (user.Name != null && _authorisationService.IsRegistered(_userService, user.Name))
-            {
-                ModelState.AddModelError("Name", "Такий акаунт вже існує.");
-            }
+            if (user.Email != null && authorisationService.IsRegistered(userService, user.Login))
+                ModelState.AddModelError("Login", "Такий акаунт вже існує");
+
             if (ModelState.IsValid)
             {
                 byte[] arr = new byte[] { 0, 1, 1, 2, 0};
                 user.Avatar = arr;
-                _userService.Add(user);
-                ControllerContext.HttpContext.Session.SetString("Name", user.Name);
+                userService.Add(user);
+                ControllerContext.HttpContext.Session.SetString("Name", user.Login);
                 return RedirectPermanent("../Home/Index");
             }
             return View();

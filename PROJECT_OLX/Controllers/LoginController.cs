@@ -11,14 +11,14 @@ namespace PROJECT_OLX.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly IDbApplicationService _applicationService;
-        private readonly IDbUserService _userService;
-        private readonly IAuthorisationService _authorisationService;
+        private readonly IDbApplicationService applicationService;
+        private readonly IDbUserService userService;
+        private readonly IAuthorisationService authorisationService;
         public LoginController(IDbApplicationService applicationService, IDbUserService userService, IAuthorisationService authorisationService)
         {
-            _applicationService = applicationService;
-            _userService = userService;
-            _authorisationService = authorisationService;
+            this.applicationService = applicationService;
+            this.userService = userService;
+            this.authorisationService = authorisationService;
         }
 
         [HttpGet]
@@ -32,16 +32,16 @@ namespace PROJECT_OLX.Controllers
                 return View("../Home/Index");
         }
         [HttpPost]
-        public IActionResult Login(User user)
+        public IActionResult Login(LoginUser user)
         {
-            if (!_authorisationService.IsRegistered(_userService, user.Name) || !_authorisationService.IsCorrectPassword(_userService, user))
+            if (!authorisationService.IsRegistered(userService, user.Login) || !authorisationService.IsCorrectPassword(userService, user))
             {
                 ModelState.AddModelError("Password", "Невірний логін або пароль");
             }
             if(ModelState.IsValid)
             {
-                ControllerContext.HttpContext.Session.SetString("Name", user.Name);
-                ViewBag.Baze = _applicationService.GetAll();
+                ControllerContext.HttpContext.Session.SetString("Name", user.Login);
+                ViewBag.Baze = applicationService.GetAll();
                 return RedirectPermanent("../Home/Index");
             }
             return View();

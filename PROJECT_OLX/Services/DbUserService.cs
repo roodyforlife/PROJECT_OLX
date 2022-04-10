@@ -9,30 +9,30 @@ namespace PROJECT_OLX.Services
 {
     public class DbUserService : IDbUserService
     {
-        private readonly ApplicationContext _db;
+        private readonly ApplicationContext db;
         public DbUserService(ApplicationContext db)
         {
-            _db = db;
+            this.db = db;
         }
         public void Add(User user)
         {
-            _db.Users.Add(user);
-            _db.SaveChanges();
+            db.Users.Add(user);
+            db.SaveChanges();
         }
         public void Del(User user)
         {
-            _db.Users.Remove(user);
-            _db.SaveChanges();
+            db.Users.Remove(user);
+            db.SaveChanges();
         }
 
         public User Get(string user)
         {
-            return _db.Users.FirstOrDefault(x => x.Name == user);
+            return db.Users.FirstOrDefault(x => x.Login == user);
         }
 
         public List<User> GetAll()
         {
-            return _db.Users.ToList();
+            return db.Users.ToList();
         }
     }
 }

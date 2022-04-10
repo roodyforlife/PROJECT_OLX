@@ -12,27 +12,27 @@ namespace PROJECT_OLX.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IDbUserService _userService;
-        private readonly IDbApplicationService _applicationService;
+        private readonly IDbUserService userService;
+        private readonly IDbApplicationService applicationService;
         public HomeController(IDbUserService userService, IDbApplicationService applicationService)
         {
-            _userService = userService;
-            _applicationService = applicationService;
+            this.userService = userService;
+            this.applicationService = applicationService;
         }
 
         public ViewResult Index(string search)
         {
         var user = ControllerContext.HttpContext.Session.GetString("Name");
             ViewBag.Account = user;
-            ViewBag.UserBaze = _userService.Get(user);
+            ViewBag.UserBaze = userService.Get(user);
             List<Add> adds;
             if (search is null)
             {
-                adds = _applicationService.GetAll();
+                adds = applicationService.GetAll();
             }
             else
             {
-                adds = _applicationService.GetSomeBySearch(search);
+                adds = applicationService.GetSomeBySearch(search);
             }
             return View(adds);
         }

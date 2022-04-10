@@ -13,21 +13,21 @@ namespace PROJECT_OLX.Controllers
 {
     public class ProfileController : Controller
     {
-        private readonly IFileService _fileService;
-        private readonly IDbApplicationService _applicationService;
-        private readonly IDbUserService _userService;
+        private readonly IFileService fileService;
+        private readonly IDbApplicationService applicationService;
+        private readonly IDbUserService userService;
         public ProfileController(IDbApplicationService applicationService, IFileService fileService, IDbUserService userService)
         {
-            _applicationService = applicationService;
-            _fileService = fileService;
-            _userService = userService;
+            this.applicationService = applicationService;
+            this.fileService = fileService;
+            this.userService = userService;
         }
         [HttpGet]
         public ViewResult Profile(string userId)
         {
             string userName = ControllerContext.HttpContext.Session.GetString("Name");
-            List<Add> adds = _applicationService.GetSomeByUserName(userId);
-            ViewBag.UserBaze = _userService.Get(userId);
+            List<Add> adds = applicationService.GetSomeByUserName(userId);
+            ViewBag.UserBaze = userService.Get(userId);
             ViewBag.User = userName;
             ViewBag.UserId = userId;
             return View(adds);
@@ -35,7 +35,7 @@ namespace PROJECT_OLX.Controllers
         [HttpPost]
         public IActionResult Profile()
         {
-            ViewBag.Baze = _applicationService.GetAll();
+            ViewBag.Baze = applicationService.GetAll();
             ControllerContext.HttpContext.Session.Remove("Name");
             ViewBag.Account = null;
             return RedirectPermanent("../Home/Index");
@@ -43,18 +43,18 @@ namespace PROJECT_OLX.Controllers
         public IActionResult Del(int addId)
         {
             string userName = ControllerContext.HttpContext.Session.GetString("Name");
-            _applicationService.Del(_applicationService.Get(addId));
+            applicationService.Del(applicationService.Get(addId));
             return RedirectPermanent($"../Profile/Profile?userId={userName}");
         }
         public async Task<IActionResult> ProfilePhotoAdd(string userId, IFormFile uploadedFile)
         {
             string userName = ControllerContext.HttpContext.Session.GetString("Name");
-            var user = _userService.Get(userName);
+            var user = userService.Get(userName);
             if (user != null && uploadedFile.Length < 3145728)
             {
-                _userService.Del(user);
-                user.Avatar = _fileService.GetFileFrom(uploadedFile);
-                _userService.Add(user);
+                userService.Del(user);
+                user.Avatar = fileService.GetFileFrom(uploadedFile);
+                userService.Add(user);
             }
             return RedirectPermanent($"../Profile/Profile?userId={userName}");
         }
