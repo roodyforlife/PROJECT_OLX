@@ -20,12 +20,12 @@ namespace PROJECT_OLX.Controllers
             this.applicationService = applicationService;
         }
 
-        public ViewResult Index(string search)
+        public IActionResult Index(string search)
         {
         var user = ControllerContext.HttpContext.Session.GetString("Name");
             ViewBag.Account = user;
             ViewBag.UserBaze = userService.Get(user);
-            List<Add> adds;
+            List<Add> adds = new();
             if (search is null)
             {
                 adds = applicationService.GetAll();

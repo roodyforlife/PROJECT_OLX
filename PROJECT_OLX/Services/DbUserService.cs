@@ -19,12 +19,19 @@ namespace PROJECT_OLX.Services
             db.Users.Add(user);
             db.SaveChanges();
         }
+
+        public void BlockOrUnblock(User user)
+        {
+            Del(user);
+            user.IsBanned = !(user.IsBanned);
+            Add(user);
+        }
+
         public void Del(User user)
         {
             db.Users.Remove(user);
             db.SaveChanges();
         }
-
         public User Get(string user)
         {
             return db.Users.FirstOrDefault(x => x.Login == user);
@@ -33,6 +40,14 @@ namespace PROJECT_OLX.Services
         public List<User> GetAll()
         {
             return db.Users.ToList();
+        }
+
+        public void MakeAdmin(string userId)
+        {
+            var user = Get(userId);
+            Del(user);
+            user.IsAdmin = !user.IsAdmin;
+            Add(user);
         }
     }
 }

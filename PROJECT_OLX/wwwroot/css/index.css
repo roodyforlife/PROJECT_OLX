@@ -28,13 +28,13 @@ top: 0px;
     justify-content: right;
     align-items: center;
 }
-.header__burger a{
-    color: #ffffff;
-    font-size: 25px;
-    font-family: Calibri;
-    margin: 0 15px 0 15px;
-    cursor: pointer;
-}
+    .header__burger button, .header__burger a {
+        color: #ffffff;
+        font-size: 25px;
+        font-family: Calibri;
+        margin: 0 15px 0 15px;
+        cursor: pointer;
+    }
 .add {
     padding: 80px;
 }
@@ -99,14 +99,14 @@ top: 0px;
     font-weight: 800;
 }
 .burger__add {
-    width: 300px;
+    width: auto;
     height: 40px;
     border-radius:5px;
     background: #fff;
     text-align: center;
     padding: 5px;
 }
-    .burger__add a {
+    .burger__add span{
         color: #443f6c;
     }
     .burger__add:hover{

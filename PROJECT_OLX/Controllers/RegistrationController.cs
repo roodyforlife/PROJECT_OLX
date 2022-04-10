@@ -20,8 +20,13 @@ namespace PROJECT_OLX.Controllers
             this.authorisationService = authorisationService;
         }
         [HttpGet]
-        public ViewResult Registration()
+        public IActionResult Registration()
         {
+            var user = ControllerContext.HttpContext.Session.GetString("Name");
+            if (user is not null)
+            {
+                return RedirectPermanent("../Home/Index");
+            }
             return View();
         }
         [HttpPost]

@@ -47,6 +47,7 @@
     margin: 0 0 0 50px;
     width: 400px;
     height: 150px;
+    position: relative;
 }
 
 .info__exit {
@@ -240,3 +241,11 @@
     .contact__email span, .contact__phone span {
         color: black;
     }
+.banned__text {
+    color: red;
+    font-weight: 800;
+    font-size: 25px;
+    font-family: Calibri;
+    position: absolute;
+    bottom: 0;
+}

@@ -39,7 +39,11 @@
                         <div class="items__title">@ViewBag.UserBaze.Name</div>
                         <div style="margin-top: 20px">
                         <div class="contact__email">Email: <span>@ViewBag.UserBaze.Email</span></div>
-                    <div class="contact__phone">Мобільний телефон: <span>@ViewBag.UserBaze.Phone</span></div>
+                        <div class="contact__phone">Мобільний телефон: <span>@ViewBag.UserBaze.Phone</span></div>
+                        @if (ViewBag.UserBaze.IsBanned)
+                        {
+                        <div class="banned__text"><span>Заблокований</span></div>
+                        }
                         </div>
                     </div>
                     @if(ViewBag.User == ViewBag.UserId)

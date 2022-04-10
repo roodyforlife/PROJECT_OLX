@@ -1,0 +1,88 @@
+﻿@model IEnumerable<User>
+    <link href="~/css/Null_Style.css" rel="stylesheet" />
+    <link href="~/css/adminPanel.css" rel="stylesheet" />
+<div class="container">
+    <a asp-action="Index" asp-controller="Home">На главную</a>
+    <div class="panel">
+        <div class="header">
+            <div class="text1"><span>Список користувачів</span></div>
+            <div class="text1"><a asp-action="AdminPanelApplications" asp-controller="AdminPanel">Список оголошень</a></div>
+        </div>
+        <table>
+            <tr>
+                <td>Логін</td>
+                <td>Ім'я</td>
+                <td>Email</td>
+                <td>Мобільний телефон</td>
+                <td>Заблокованый</td>
+                <td>Адміністратор</td>
+                <td>Control</td>
+            </tr>
+            @foreach (var u in Model)
+            {
+        <tr class="content">
+            <td><div style="width: 70px; word-wrap:break-word;">@u.Login</div></td>
+            <td><div style="width: 75px; word-wrap:break-word;">@u.Name</div></td>
+            <td><div style="width: 240px; word-wrap:break-word;">@u.Email</div></td>
+            <td><div style="width: 210px; word-wrap:break-word;">@u.Phone</div></td>
+            <td><div style="width: 155px; word-wrap:break-word;">
+                @{
+                    if (u.IsBanned)
+                    {
+                        <span style="color: red;">Заблокований</span>
+                    }
+                    else
+                    {
+                        @:-
+                    }
+                }
+                </div></td>
+            <td><div style="width: 150px; word-wrap:break-word;">
+                @{
+                    if(u.IsAdmin)
+                    { 
+                        <span style="color: red;">Адміністратор</span>
+                    }
+                    else
+                    { 
+                        @:-
+                    }
+                }
+                </div></td>
+            <td>
+                <div style="width: 330px; word-wrap:break-word;">
+                    <div class="buttons">
+                        <a asp-action="Profile" asp-controller="Profile" asp-route-userId="@u.Login"><div class="view__button button">View</div></a>
+                        <form asp-action="BlockUser" asp-route-userId="@u.Login"><button class="ban__button button">
+                            @{
+                                if(u.IsBanned)
+                                {
+                                    @:Unblock
+                                }
+                                else
+                                {
+                                    @:Block
+                                }
+                            }
+                              </button></form>
+                        <form asp-action="MakeAdmin" asp-route-userId="@u.Login">
+                            @if (u.IsAdmin)
+                            {
+                            <button class="makeAdmin__button active__button button">Remove Admin</button>
+                            }
+                            else
+                            {
+                        <button class="makeAdmin__button button">Make Admin</button>
+                            }
+                        </form>
+</div>
+
+</div>
+
+</td>
+
+</tr>
+            }
+        </table>
+    </div>
+</div>

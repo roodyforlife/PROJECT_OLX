@@ -76,6 +76,9 @@
     font-size: 14px;
     margin: 10px 0 5px 0;
 }
+.info__desc span{
+    word-wrap:break-word;
+}
 
 .add__contact {
     height: auto;

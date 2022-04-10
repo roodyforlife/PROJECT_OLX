@@ -9,12 +9,12 @@ using PROJECT_OLX.Interfaces;
 
 namespace PROJECT_OLX.Controllers
 {
-    public class LoginController : Controller
+    public class LoginToController : Controller
     {
         private readonly IDbApplicationService applicationService;
         private readonly IDbUserService userService;
         private readonly IAuthorisationService authorisationService;
-        public LoginController(IDbApplicationService applicationService, IDbUserService userService, IAuthorisationService authorisationService)
+        public LoginToController(IDbApplicationService applicationService, IDbUserService userService, IAuthorisationService authorisationService)
         {
             this.applicationService = applicationService;
             this.userService = userService;
@@ -22,17 +22,17 @@ namespace PROJECT_OLX.Controllers
         }
 
         [HttpGet]
-        public ViewResult Login()
+        public IActionResult LoginTo()
         {
-            var userName = ControllerContext.HttpContext.Session.GetString("Name");
-            if (userName is null)
+            var user = ControllerContext.HttpContext.Session.GetString("Name");
+            if (user is null)
             {   
                 return View();
             }
-                return View("../Home/Index");
+                return RedirectPermanent("../Home/Index");
         }
         [HttpPost]
-        public IActionResult Login(LoginUser user)
+        public IActionResult LoginTo(LoginUser user)
         {
             if (!authorisationService.IsRegistered(userService, user.Login) || !authorisationService.IsCorrectPassword(userService, user))
             {
