@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Add>
+@{
+    Layout = "_Main";
+}
+<table>
+    <tr>
+        <td>ID</td>
+        <td>Найменування</td>
+        <td>Опис</td>
+        <td>Дата публікації</td>
+        <td>Власник</td>
+        <td>Місто</td>
+        <td>Ціна</td>
+        <td>Control</td>
+    </tr>
+    @foreach (var u in Model)
+    {
+
+        <tr class="content">
+            <td><div style="width: 20px; word-wrap:break-word;">@u.Id</div></td>
+            <td><div style="width: 140px; word-wrap:break-word;">@u.Title</div></td>
+            <td><div style="width: 230px; word-wrap:break-word;">@u.Desc</div></td>
+            <td><div style="width: 130px; word-wrap:break-word;">@u.Data.ToString("dd MMMM yyyy MM:HH", new System.Globalization.CultureInfo("uk-UA"))</div></td>
+            <td><div style="width: 80px; word-wrap:break-word;">@u.userName</div></td>
+            <td><div style="width: 130px; word-wrap:break-word;">@u.Country</div></td>
+            <td><div style="width: 110px; word-wrap:break-word;">@u.Cost.ToString("C0", new System.Globalization.CultureInfo("uk-UA"))</div></td>
+            <td>
+                <div style="width: 180px; word-wrap:break-word;">
+                    <div class="buttons">
+                        <a asp-action="Advertisement" asp-controller="Advertisement" asp-route-addId="@u.Id"><div class="view__button button">View</div></a>
+                        <a asp-action="DeleteAD" asp-route-addId="@u.Id"><div class="ban__button button">Delete</div></a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
+</table>

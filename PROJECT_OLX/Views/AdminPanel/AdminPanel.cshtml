@@ -1,13 +1,7 @@
 ﻿@model IEnumerable<User>
-    <link href="~/css/Null_Style.css" rel="stylesheet" />
-    <link href="~/css/adminPanel.css" rel="stylesheet" />
-<div class="container">
-    <a asp-action="Index" asp-controller="Home">На главную</a>
-    <div class="panel">
-        <div class="header">
-            <div class="text1"><span>Список користувачів</span></div>
-            <div class="text1"><a asp-action="AdminPanelApplications" asp-controller="AdminPanel">Список оголошень</a></div>
-        </div>
+@{ 
+    Layout = "_Main";
+}
         <table>
             <tr>
                 <td>Логін</td>
@@ -84,5 +78,3 @@
 </tr>
             }
         </table>
-    </div>
-</div>

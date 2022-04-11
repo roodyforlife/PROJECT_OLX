@@ -10,17 +10,17 @@ using PROJECT_OLX.Services;
 
 namespace PROJECT_OLX.Controllers
 {
-    public class RegistrationController : Controller
+    public class RegistController : Controller
     {
         private readonly IDbUserService userService;
         private readonly IAuthorisationService authorisationService;
-        public RegistrationController(IDbUserService userService, IAuthorisationService authorisationService)
+        public RegistController(IDbUserService userService, IAuthorisationService authorisationService)
         {
             this.userService = userService;
             this.authorisationService = authorisationService;
         }
         [HttpGet]
-        public IActionResult Registration()
+        public IActionResult Regist()
         {
             var user = ControllerContext.HttpContext.Session.GetString("Name");
             if (user is not null)
@@ -30,7 +30,7 @@ namespace PROJECT_OLX.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Registration(User user)
+        public IActionResult Regist(User user)
         {
             
             if (user.Email != null && authorisationService.IsRegistered(userService, user.Login))

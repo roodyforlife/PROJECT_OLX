@@ -9,12 +9,12 @@ using PROJECT_OLX.Interfaces;
 
 namespace PROJECT_OLX.Controllers
 {
-    public class LoginToController : Controller
+    public class LoginingController : Controller
     {
         private readonly IDbApplicationService applicationService;
         private readonly IDbUserService userService;
         private readonly IAuthorisationService authorisationService;
-        public LoginToController(IDbApplicationService applicationService, IDbUserService userService, IAuthorisationService authorisationService)
+        public LoginingController(IDbApplicationService applicationService, IDbUserService userService, IAuthorisationService authorisationService)
         {
             this.applicationService = applicationService;
             this.userService = userService;
@@ -22,7 +22,7 @@ namespace PROJECT_OLX.Controllers
         }
 
         [HttpGet]
-        public IActionResult LoginTo()
+        public IActionResult Logining()
         {
             var user = ControllerContext.HttpContext.Session.GetString("Name");
             if (user is null)
@@ -32,7 +32,7 @@ namespace PROJECT_OLX.Controllers
                 return RedirectPermanent("../Home/Index");
         }
         [HttpPost]
-        public IActionResult LoginTo(LoginUser user)
+        public IActionResult Logining(LoginUser user)
         {
             if (!authorisationService.IsRegistered(userService, user.Login) || !authorisationService.IsCorrectPassword(userService, user))
             {

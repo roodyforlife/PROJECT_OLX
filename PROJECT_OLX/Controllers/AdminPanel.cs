@@ -26,7 +26,7 @@ namespace PROJECT_OLX.Controllers
             var allUser = userService.GetAll();
             return View(allUser);
         }
-        public IActionResult AdminPanelApplications()
+        public IActionResult AdminPanelAD()
         {
             var user = ControllerContext.HttpContext.Session.GetString("Name");
             if (user is null || !userService.Get(user).IsAdmin)
@@ -34,13 +34,13 @@ namespace PROJECT_OLX.Controllers
             List<Add> allAdd = applicationService.GetAll();
             return View(allAdd);
         }
-        public IActionResult DeleteApplication(int addId)
+        public IActionResult DeleteAD(int addId)
         {
             var user = ControllerContext.HttpContext.Session.GetString("Name");
             if (user is null || !userService.Get(user).IsAdmin)
                 return RedirectPermanent("../Home/Index");
             applicationService.Del(applicationService.Get(addId));
-            return RedirectPermanent("../AdminPanel/AdminPanelApplications");
+            return RedirectPermanent("../AdminPanel/AdminPanelAD");
         }
         public IActionResult BlockUser(string userId)
         {

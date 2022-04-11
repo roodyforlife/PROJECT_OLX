@@ -8,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace PROJECT_OLX.Controllers
 {
-    public class AdOfUserController : Controller
+    public class AdvertisementController : Controller
     {
         private readonly IDbApplicationService applicationService;
         private readonly IDbUserService userService;
-        public AdOfUserController(IDbApplicationService applicationService, IDbUserService userService)
+        public AdvertisementController(IDbApplicationService applicationService, IDbUserService userService)
         {
             this.applicationService = applicationService;
             this.userService = userService;
         }
-        public IActionResult AdOfUser(int addId)
+        public IActionResult Advertisement(int addId)
         {
             var userAdd = applicationService.Get(addId);
             var userAccount = userService.Get(userAdd.userName);

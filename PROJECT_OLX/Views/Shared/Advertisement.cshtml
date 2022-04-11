@@ -64,7 +64,7 @@
             <div class="add__content__">
                 @foreach (var u in Model)
                 {
-                    <a style="color: black;" asp-controller="AdOfUser" asp-action="AdOfUser" asp-route-addId=@u.Id>
+                    <a style="color: black;" asp-controller="Advertisement" asp-action="Advertisement" asp-route-addId=@u.Id>
                         <div class="content__items">
                             <div class="content__image" style="background: url('data:image/jpeg;base64,@(Convert.ToBase64String(u.Photos.First().Avatar))') center/cover"></div>
                             <div class="content__title"><p>@u.Title</p></div>
