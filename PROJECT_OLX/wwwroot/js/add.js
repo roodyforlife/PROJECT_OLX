@@ -46,11 +46,22 @@ console.log("fdgfdgfdgdfg");
         }
 }
 
-function select()
+function select__category()
 {
-    document.querySelector('.categories').classList.toggle("active");
-    document.querySelector(".select").style.border = "2px solid #000;";
-    var test = document.querySelectorAll("li");
+    document.querySelector('.categories').classList.toggle("active__menu");
+    document.querySelector(".select__categories").style.border = "2px solid #000;";
+    var test = document.querySelectorAll(".li__block__category");
+    test.forEach(function(item)
+    {
+        item.classList.toggle("active__li");
+    });
+}
+
+function select__sort()
+{
+    document.querySelector('.sort').classList.toggle("active__menu");
+    document.querySelector(".select__sort").style.border = "2px solid #000;";
+    var test = document.querySelectorAll(".li__block__sort");
     test.forEach(function(item)
     {
         item.classList.toggle("active__li");
@@ -59,10 +70,36 @@ function select()
 function selected__category(category, categoryId)
 {
     document.querySelector(".disabled__input__categories").value = category;
-    document.querySelector(".select").innerHTML = `<span>${category}</span>`
+    document.querySelector(".select__categories").innerHTML = `<span>${category}</span>`
     if(categoryId == 0)
     document.querySelector(".disabled__input__categories").value = "";
-    document.querySelector('.categories').classList.toggle("active");
+    document.querySelector('.categories').classList.toggle("active__menu");
+    // add / remove class .active__li
+    var test = document.querySelectorAll(".li__block__category");
+    test.forEach(function(item)
+    {
+        item.classList.toggle("active__li");
+    });
+};
+
+function selected__sort(sort, sortName)
+{
+    document.querySelector(".disabled__input__sort").value = sort;
+    document.querySelector(".select__sort").innerHTML = `<span>${sortName}</span>`
+    document.querySelector('.sort').classList.toggle("active__menu");
+    // add / remove class .active__li
+    var test = document.querySelectorAll(".li__block__sort");
+    test.forEach(function(item)
+    {
+        item.classList.toggle("active__li");
+    });
+};
+
+function selected__categoryWhileAdd(category)
+{
+    document.querySelector(".disabled__input__categories").value = category;
+    document.querySelector(".select").innerHTML = `<span>${category}</span>`
+    document.querySelector('.categories').classList.toggle("active__menu");
     // add / remove class .active__li
     var test = document.querySelectorAll("li");
     test.forEach(function(item)

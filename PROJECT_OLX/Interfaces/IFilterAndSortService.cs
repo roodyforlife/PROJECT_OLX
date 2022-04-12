@@ -9,5 +9,6 @@ namespace PROJECT_OLX.Interfaces
     public interface IFilterAndSortService
     {
         public IEnumerable<CategoryViewModel> AllCategories { get; }
+        public IEnumerable<SortViewModel> AllSort { get; }
     }
 }

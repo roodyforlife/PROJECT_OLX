@@ -8,6 +8,7 @@ namespace PROJECT_OLX.Models
     public class SearchViewModel
     {
         public CategoryViewModel Category { get; set; }
-        public string Input { get; set; } = "";
+        public string Input { get; set; }
+        public string Sort { get; set; }
     }
 }

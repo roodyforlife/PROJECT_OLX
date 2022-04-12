@@ -87,3 +87,121 @@ body {
 .input__button input:hover {
     background: #6860a3;
 }
+
+.select__block {
+    margin: 30px 0 0;
+    width: 300px;
+    position: relative;
+}
+
+.select {
+    font-size: 16px;
+    font-family: Arial;
+    color: black;
+    height: 50px;
+    background: #f3f3f3;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+}
+
+    .select::after, .select::before {
+        content: '';
+        display: inline-block;
+        width: 15px;
+        height: 2px;
+        background: black;
+        position: absolute;
+    }
+
+    .select::before {
+        top: 50%;
+        transform: rotate(45deg);
+        right: 19px;
+    }
+
+    .select::after {
+        right: 10px;
+        top: 50%;
+        transform: rotate(-45deg);
+    }
+
+    .select span {
+        display: block;
+        margin-top: 12px;
+    }
+
+.categories {
+    font-size: 16px;
+    font-family: Arial;
+    color: black;
+    position: absolute;
+    width: 100%;
+    height: 0;
+    background: #f3f3f3;
+    border-radius: 0 0 5px;
+    transition: all 0.3s;
+}
+
+.active__menu {
+    transition: all 0.3s;
+    min-height: 300px;
+    border: 1px solid #ccc;
+    overflow: auto;
+}
+
+    .active__menu::-webkit-scrollbar {
+        width: 5px;
+        height: 5px;
+    }
+
+    .active__menu::-webkit-scrollbar-track-piece {
+        background-color: #ffffff;
+    }
+
+    .active__menu::-webkit-scrollbar-thumb {
+        background-color: #443f6c;
+        border-radius: 3px;
+    }
+
+.li__block {
+    height: 0;
+    pointer-events: none;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.3s;
+}
+
+.active__li {
+    height: 50px;
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
+    transition: all 0.3s;
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: all;
+}
+
+.li__block:hover {
+    background: #443f6c;
+    color: #fff;
+}
+
+.li__block:active {
+    background: #625aa0;
+}
+
+.disabled__input__categories {
+    display: none;
+}
+
+.categories, .select {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Chrome/Safari/Opera */
+    -khtml-user-select: none; /* Konqueror */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently
+                                    not supported by any browser */
+}

@@ -36,9 +36,37 @@ namespace PROJECT_OLX.Services
             return db.Adding.Include(x => x.Photos).ToList();
         }
 
-        public List<Add> GetSomeBySearch(string search)
+        public List<Add> GetSomeBySearch(SearchViewModel searchResult)
         {
-            return db.Adding.Where(x => (x.Title + x.Desc)!.Contains(search)).Include(x => x.Photos).ToList();
+            searchResult.Input = String.IsNullOrEmpty(searchResult.Input) ? "" : searchResult.Input;
+            var category = "";
+            if (searchResult.Category is not null && searchResult.Category.Name is not null)
+            {
+                category = searchResult.Category.Name;
+            }
+            var filteredADS = db.Adding.Include(x => x.Photos).Where(x => x.Category.Contains(category) && (x.Title + x.Desc).ToLower().Contains(searchResult.Input.ToLower()));
+            switch (searchResult.Sort)
+            {
+                case "NameDesc":
+                    filteredADS = filteredADS.OrderByDescending(x => x.Title);
+                    break;
+                case "NameAsc":
+                    filteredADS = filteredADS.OrderBy(x => x.Title);
+                    break;
+                case "CostDesc":
+                    filteredADS = filteredADS.OrderByDescending(x => x.Cost);
+                    break;
+                case "CostAsc":
+                    filteredADS = filteredADS.OrderBy(x => x.Cost);
+                    break;
+                case "DateDesc":
+                    filteredADS = filteredADS.OrderByDescending(x => x.Data);
+                    break;
+                case "DateAsc":
+                    filteredADS = filteredADS.OrderBy(x => x.Data);
+                    break;
+            }
+            return filteredADS.ToList();
         }
 
         public List<Add> GetSomeByUserName(string userId)

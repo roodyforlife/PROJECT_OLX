@@ -26,6 +26,7 @@ namespace PROJECT_OLX.Models
         public string Country { get; set; }
         public List<Photo> Photos { get; set; } = new List<Photo>();
         public DateTime Data { get; set; } = DateTime.Now;
+        public string Category { get; set; }
 
     }
 }

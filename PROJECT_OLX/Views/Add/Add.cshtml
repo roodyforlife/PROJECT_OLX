@@ -8,6 +8,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
+    <link href="~/css/jquery/emojionearea.min.css" rel="stylesheet" />
     <link href="~/css/add.css" rel="stylesheet" />
     <link href="~/css/addPhoto.css" rel="stylesheet" />
     <link href="~/css/Null_Style.css" rel="stylesheet" />
@@ -17,7 +18,9 @@
 <body>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/add.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="~/js/juery/emojionearea.min.js"></script>
+<script src="~/js/add.js"></script>
     <div class="container">
         <div class="add">
             <div class="add__title">Створити оголошення</div>
@@ -27,10 +30,10 @@
                     <div class="input__content">
                         <div class="input__first">
                             <div class="input__text__flex"><div class="input__title text">Вкажіть назву</div> <span asp-validation-for="Title" class="field-validation-valid"></span></div>
-                            <input type="text" asp-for="Title" />
+                            <input type="text" id="MyTitleInput" asp-for="Title" />
                             
                             <div class="input__text__flex"><div class="input__desc text">Опишіть ваш товар </div><span asp-validation-for="Desc" class="field-validation-valid"></span></div>
-                            <div class="input__textarea"><textarea class="field-validation-valid " asp-for="Desc"></textarea>
+                            <div class="input__textarea"><textarea id="MyDescArea" class="field-validation-valid " asp-for="Desc"></textarea>
                             </div>
                             <div class="input__image">
                                 <div class="upload-file__wrapper">
@@ -49,17 +52,40 @@
                             <div class="input__text__flex"><div class="input__navigate text">Ваше місцезнаходження</div><span asp-validation-for="Country" class="field-validation-valid"></span></div>
                             <div>
                             <input type="text" asp-for="Country" />
-                            
-                            </div>
+                                </div>
+                        <div class="input__text__flex"></div>
+                            <div class="select__block">
+                                <div class="select select__categories" onclick="select__category()"><span>Всі</span></div>
+                                    <div class="categories">
+                                        <ul>
+                                            @foreach (CategoryViewModel u in ViewBag.Categories)
+                                            {
+                                                <li class="li__block li__block__category" onclick="selected__categoryWhileAdd('@u.Name')">@u.Name</li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                                    <input class="disabled__input__categories" asp-for="Category" type="text" value="Всі"/>
                             <div class="input__text__flex"><div class="input__navigate text">Укажіть ціну товару</div><span asp-validation-for="Cost" class="field-validation-valid"></span></div>
-                            <input type="text" asp-for="Cost" />
-                            
+                            <input type="text"  asp-for="Cost" />
+                            </div>
                         </div>
                     </div>
-                </div>
                 <div class="input__button"><input type="submit" value="Додати" /></div>
             </form>
         </div>
     </div>
+    <script>
+        $(document).ready(function(){
+            $("#MyTitleInput").emojioneArea({
+                pickerPosition: "bottom"
+            });
+        });
+        $(document).ready(function(){
+            $("#MyDescArea").emojioneArea({
+                pickerPosition: "bottom"
+            });
+        });
+    </script>
 </body>
 </html>

@@ -17,18 +17,34 @@ namespace PROJECT_OLX.Services
                 {
                     new CategoryViewModel {Name = "Всі", Id = 0},
                     new CategoryViewModel {Name = "Допомога", Id = 1},
-                    new CategoryViewModel {Name = "Дитячий світ", Id = 2},
-                    new CategoryViewModel {Name = "Нерухомість", Id = 3},
-                    new CategoryViewModel {Name = "Авто", Id = 4},
-                    new CategoryViewModel {Name = "Запчастини для транспорту", Id = 5},
-                    new CategoryViewModel {Name = "Робота", Id = 6},
-                    new CategoryViewModel {Name = "Тварини", Id = 7},
-                    new CategoryViewModel {Name = "Дім та сад", Id = 8},
-                    new CategoryViewModel {Name = "Електроніка", Id = 9},
-                    new CategoryViewModel {Name = "Бізнес послуги", Id = 10},
-                    new CategoryViewModel {Name = "Мода та стиль", Id = 11},
-                    new CategoryViewModel {Name = "Хоббі, відпочинок та спорт", Id = 12},
-                    new CategoryViewModel {Name = "Обмін", Id = 13}
+                    new CategoryViewModel {Name = "Дитячий світ", Id = 1},
+                    new CategoryViewModel {Name = "Нерухомість", Id = 1},
+                    new CategoryViewModel {Name = "Авто", Id = 1},
+                    new CategoryViewModel {Name = "Запчастини для транспорту", Id = 1},
+                    new CategoryViewModel {Name = "Робота", Id = 1},
+                    new CategoryViewModel {Name = "Тварини", Id = 1},
+                    new CategoryViewModel {Name = "Дім та сад", Id = 1},
+                    new CategoryViewModel {Name = "Електроніка", Id = 1},
+                    new CategoryViewModel {Name = "Бізнес послуги", Id = 1},
+                    new CategoryViewModel {Name = "Мода та стиль", Id = 1},
+                    new CategoryViewModel {Name = "Хоббі, відпочинок та спорт", Id = 1},
+                    new CategoryViewModel {Name = "Обмін", Id = 1}
+                };
+            }
+        }
+
+        public IEnumerable<SortViewModel> AllSort
+        {
+            get
+            {
+                return new List<SortViewModel>
+                {
+                    new SortViewModel { Name = "За назвою a-z", Value = "NameAsc"},
+                    new SortViewModel { Name = "За назвою z-a", Value = "NameDesc"},
+                    new SortViewModel { Name = "Найдорожчі", Value = "CostDesc"},
+                    new SortViewModel { Name = "Найдешевші", Value = "CostAsc"},
+                    new SortViewModel { Name = "Найновіші", Value = "DateDesc"},
+                    new SortViewModel { Name = "Найстаріші", Value = "DateAsc"},
                 };
             }
         }

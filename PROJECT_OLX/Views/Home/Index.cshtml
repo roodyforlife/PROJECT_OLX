@@ -22,7 +22,7 @@
             <div class="header__burger">
                 @if (ViewBag.Account == null)
                 {
-                    <div class="burger__text"><a asp-action="Logining" asp-controller="Logining">Вхід</a></div>
+                    <div class="burger__text"><a asp-action="LogIN" asp-controller="LogIN">Вхід</a></div>
                     <div class="burger__text"><a asp-action="Regist" asp-controller="Regist">Реєстрація</a></div>
                 }
                 else
@@ -48,21 +48,37 @@
         <form asp-action="Index" asp-controller="Home" method="post" enctype="multipart/form-data">
         <div class="input__search__categories__block">
         <div class="search">
-                <input class="input__search" asp-for="Input" type="search" placeholder="Пошук..." autofocus required />
+                <input class="input__search" asp-for="Input" type="search" placeholder="Пошук..." autofocus />
                 <button type="submit" class="input__button">Пошук</button>
         </div>
-        <div class="select__block">
-            <div class="select" onclick="select()"><span>Виберіть категорію</span></div>
+        <div class="search__selector">
+           <!--Категорія товару-->
+        <div class="select__category__block">
+            <div class="select select__categories" onclick="select__category()"><span>Виберіть категорію</span></div>
             <div class="categories">
                 <ul>
-                    @foreach (var u in ViewBag.Categories)
+                    @foreach (CategoryViewModel u in ViewBag.Categories)
                     {
-                        <li class="li__block" onclick="selected__category('@u.Name', @u.Id)">@u.Name</li>
+                        <li class="li__block__category" onclick="selected__category('@u.Name', @u.Id)">@u.Name</li>
                     }
                 </ul>
             </div>
             </div>
-            <input class="disabled__input__categories" asp-for="Category.Name"  type="text">
+            <input class="disabled__input__categories disabled__input" asp-for="Category.Name" type="text">
+            <!--Сортування товару-->
+            <div class="select__sort__block">
+            <div class="select select__sort" onclick="select__sort()"><span>Сортування</span></div>
+            <div class="sort">
+                <ul>
+                    @foreach (SortViewModel u in ViewBag.Sorts)
+                    {
+                        <li class="li__block__sort" onclick="selected__sort('@u.Value', '@u.Name')">@u.Name</li>
+                    }
+                </ul>
+            </div>
+            </div>
+            <input class="disabled__input__sort disabled__input" asp-for="Sort" value="NameDesc" type="text">
+            </div>
         </div>
         </form>
         <div class="add">

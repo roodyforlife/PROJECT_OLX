@@ -16,18 +16,21 @@ namespace PROJECT_OLX.Controllers
         private readonly IFileService fileService;
         private readonly IDbApplicationService applicationService;
         private readonly IDbUserService userService;
-        private readonly ApplicationContext db; 
-        public AddController(IDbApplicationService applicationService, IFileService fileService, IDbUserService userService)
+        private readonly ApplicationContext db;
+        private readonly IFilterAndSortService filterAndSortService;
+        public AddController(IDbApplicationService applicationService, IFileService fileService, IDbUserService userService, IFilterAndSortService filterAndSortService)
         {
             this.applicationService = applicationService;
             this.fileService = fileService;
             this.userService = userService;
+            this.filterAndSortService = filterAndSortService;
         }
         [HttpGet]
         public IActionResult Add()
         {
             var userName = ControllerContext.HttpContext.Session.GetString("Name");
             var user = userService.Get(userName);
+            ViewBag.Categories = filterAndSortService.AllCategories;
             if (user is null)
             {
                 return RedirectPermanent("../Home/Index");
@@ -45,6 +48,7 @@ namespace PROJECT_OLX.Controllers
                 return RedirectPermanent("../Home/Index");
             }
             ViewBag.IsFileValid = uploads is not null || uploads.FirstOrDefault(x => x.Length > 3145728) is null || uploads.Count <= 5 ? "field-validation-file-error" : "";
+            ViewBag.Categories = filterAndSortService.AllCategories;
             return View();
             }
 
