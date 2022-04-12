@@ -1,5 +1,6 @@
 ﻿@using PROJECT_OLX.Models;
-@model IEnumerable<Add>
+@using System.Linq;
+@model PROJECT_OLX.Models.SearchViewModel
 @{
     Layout = null;
 }
@@ -44,15 +45,31 @@
                 }
             </div>
         </div>
+        <form asp-action="Index" asp-controller="Home" method="post" enctype="multipart/form-data">
+        <div class="input__search__categories__block">
         <div class="search">
-                <input class="input__search" type="search" placeholder="Пошук..." autofocus required />
-                <button class="input__button" onclick="search()">Пошук</button>
+                <input class="input__search" asp-for="Input" type="search" placeholder="Пошук..." autofocus required />
+                <button type="submit" class="input__button">Пошук</button>
         </div>
+        <div class="select__block">
+            <div class="select" onclick="select()"><span>Виберіть категорію</span></div>
+            <div class="categories">
+                <ul>
+                    @foreach (var u in ViewBag.Categories)
+                    {
+                        <li class="li__block" onclick="selected__category('@u.Name', @u.Id)">@u.Name</li>
+                    }
+                </ul>
+            </div>
+            </div>
+            <input class="disabled__input__categories" asp-for="Category.Name"  type="text">
+        </div>
+        </form>
         <div class="add">
             <div class="add__items">
                 <div class="add__title">Оголошення</div>
                 <div class="add__content">
-                    @foreach (var u in  Model)
+                    @foreach (Add u in ViewBag.AddBaze)
                     {
                             <a asp-controller="Advertisement" asp-action="Advertisement" asp-route-addId=@u.Id>
                                 <div class="content__items">

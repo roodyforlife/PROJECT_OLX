@@ -34,6 +34,7 @@ namespace PROJECT_OLX
             services.AddScoped<IDbApplicationService, DbApplicationService>();
             services.AddScoped<IDbUserService, DbUserService>();
             services.AddScoped<IAuthorisationService, AuthorisationService>();
+            services.AddScoped<IFilterAndSortService, FilterAndSortService>();
             services.AddRazorPages()
     .AddMvcOptions(options =>
     {

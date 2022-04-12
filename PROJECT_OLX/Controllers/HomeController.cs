@@ -14,27 +14,22 @@ namespace PROJECT_OLX.Controllers
     {
         private readonly IDbUserService userService;
         private readonly IDbApplicationService applicationService;
-        public HomeController(IDbUserService userService, IDbApplicationService applicationService)
+        private readonly IFilterAndSortService filterAndSortservice;
+        public HomeController(IDbUserService userService, IDbApplicationService applicationService, IFilterAndSortService filterAndSortservice)
         {
             this.userService = userService;
             this.applicationService = applicationService;
+            this.filterAndSortservice = filterAndSortservice;
         }
 
-        public IActionResult Index(string search)
+        public IActionResult Index(SearchViewModel search)
         {
         var user = ControllerContext.HttpContext.Session.GetString("Name");
             ViewBag.Account = user;
             ViewBag.UserBaze = userService.Get(user);
-            List<Add> adds = new();
-            if (search is null)
-            {
-                adds = applicationService.GetAll();
-            }
-            else
-            {
-                adds = applicationService.GetSomeBySearch(search);
-            }
-            return View(adds);
+                ViewBag.AddBaze = applicationService.GetAll();
+            ViewBag.Categories = filterAndSortservice.AllCategories;
+            return View();
         }
         public IActionResult Profile()
         {

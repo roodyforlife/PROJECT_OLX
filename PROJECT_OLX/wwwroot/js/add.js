@@ -45,3 +45,30 @@ console.log("fdgfdgfdgdfg");
             document.getElementById('upload-file__label').style.background = "#fff0f1";
         }
 }
+
+function select()
+{
+    document.querySelector('.categories').classList.toggle("active");
+    document.querySelector(".select").style.border = "2px solid #000;";
+    var test = document.querySelectorAll("li");
+    test.forEach(function(item)
+    {
+        item.classList.toggle("active__li");
+    });
+}
+function selected__category(category, categoryId)
+{
+    document.querySelector(".disabled__input__categories").value = category;
+    document.querySelector(".select").innerHTML = `<span>${category}</span>`
+    if(categoryId == 0)
+    document.querySelector(".disabled__input__categories").value = "";
+    document.querySelector('.categories').classList.toggle("active");
+    // add / remove class .active__li
+    var test = document.querySelectorAll("li");
+    test.forEach(function(item)
+    {
+        item.classList.toggle("active__li");
+    });
+};
+
+
