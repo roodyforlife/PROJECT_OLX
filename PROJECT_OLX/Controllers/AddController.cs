@@ -40,14 +40,14 @@ namespace PROJECT_OLX.Controllers
             [HttpPost]
             public IActionResult Add(Add add, IFormFileCollection uploads)
             {
-            if (ModelState.IsValid && uploads is not null && uploads.FirstOrDefault(x => x.Length > 3145728) is null && uploads.Count <= 5)
+            if (ModelState.IsValid && uploads.Count > 0 && uploads.FirstOrDefault(x => x.Length > 3145728) is null && uploads.Count <= 5)
             {
                 add.userName = ControllerContext.HttpContext.Session.GetString("Name");
                 add.Photos.AddRange(fileService.GetFilesFrom(uploads));
                 applicationService.Add(add);
                 return RedirectPermanent("../Home/Index");
             }
-            ViewBag.IsFileValid = uploads is not null || uploads.FirstOrDefault(x => x.Length > 3145728) is null || uploads.Count <= 5 ? "field-validation-file-error" : "";
+            ViewBag.IsFileValid = uploads.Count > 0 || uploads.FirstOrDefault(x => x.Length > 3145728) is null || uploads.Count <= 5 ? "field-validation-file-error" : "";
             ViewBag.Categories = filterAndSortService.AllCategories;
             return View();
             }
